@@ -14,9 +14,7 @@ class LoginView extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/signin.jpg'),
-            fit: BoxFit.cover,
-          ),
+              image: AssetImage('assets/signin.jpg'), fit: BoxFit.cover),
         ),
         child: Center(
           child: Container(
@@ -31,7 +29,7 @@ class LoginView extends StatelessWidget {
                     "Sign In",
                     style: TextStyle(
                       fontSize: 24,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w700,
                       color: Colors.white,
                     ),
                   ),
@@ -59,7 +57,10 @@ class LoginView extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 20),
-                  MainButton(),
+                  MainButton(
+                    ontap: () {},
+                    label: 'Sign in',
+                  ),
                   SizedBox(height: 33),
                   Row(
                     children: [

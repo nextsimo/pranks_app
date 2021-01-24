@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:prank/src/utils/device.dart';
 import 'package:prank/src/utils/styles.dart';
 
 class SimpleInput extends StatelessWidget {
   final String hint;
 
   const SimpleInput({Key key, this.hint}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
