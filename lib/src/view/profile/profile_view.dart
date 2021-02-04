@@ -26,7 +26,9 @@ class ProfileView extends StatelessWidget {
         children: [
           Column(
             children: [
-              BackAppBar(),
+              BackAppBar(
+                icone: "back",
+              ),
               buildProfilInfo(),
             ],
           ),
@@ -55,7 +57,7 @@ class ProfileView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgIcon(
-              icon: e.icon,
+              icone: e.icon,
             ),
             SizedBox(
               width: 19,
@@ -89,7 +91,7 @@ class ProfileView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SvgIcon(
-                icon: "logout",
+                icone: "logout",
               ),
               SizedBox(
                 width: 5.4,

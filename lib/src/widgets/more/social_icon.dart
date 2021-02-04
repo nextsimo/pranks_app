@@ -15,8 +15,9 @@ class SocialIcon extends StatelessWidget {
           shape: BoxShape.circle,
           border: Border.all(color: Color(0xff3E3E3E), width: 2.0)),
       child: Center(
-        child: SvgIcon(icon: icon),
-      ),
+          child: SvgIcon(
+        icone: icon,
+      )),
     );
   }
 }
