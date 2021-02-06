@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:prank/src/view/papers/download_papers.dart';
+import 'package:prank/src/view/Chat/chat.dart';
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: DownloadPapers(),
+      home: ChatView(),
     );
   }
 }
