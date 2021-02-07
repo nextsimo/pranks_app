@@ -10,6 +10,7 @@ class Call extends StatelessWidget {
     return Material(
       color: Color(0xFF313036),
       child: SingleChildScrollView(
+        padding: EdgeInsets.only(bottom: 80),
         child: Column(
           children: [
             SizedBox(height: 65),
@@ -43,7 +44,7 @@ class Call extends StatelessWidget {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(10),
-                      child: SvgIcon(icone: "volume-high"),
+                      child: SvgIcon(icon: "volume-high"),
                     ),
                   ),
                 ),
@@ -130,7 +131,7 @@ class Call extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.all(20),
-          child: SvgIcon(icone: "decline_call"),
+          child: SvgIcon(icon: "decline_call"),
         ),
       ),
     );

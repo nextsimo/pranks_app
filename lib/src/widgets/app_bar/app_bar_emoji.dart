@@ -20,7 +20,7 @@ class AppBarWithEmoji extends StatelessWidget {
                   back(context);
                 },
                 child: SvgIcon(
-                  icone: "back",
+                  icon: "back",
                 ),
               ),
               SizedBox(width: 9),
@@ -34,7 +34,7 @@ class AppBarWithEmoji extends StatelessWidget {
               ),
             ],
           ),
-          SvgIcon(icone: "avatar"),
+          SvgIcon(icon: "avatar"),
         ],
       ),
     );

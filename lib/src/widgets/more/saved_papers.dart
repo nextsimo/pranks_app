@@ -39,7 +39,7 @@ class SavedPapers extends StatelessWidget {
                   shape: BoxShape.circle,
                   color: Color(0xFFF3F4F6),
                 ),
-                child: SvgIcon(icone: "colose"),
+                child: SvgIcon(icon: "colose"),
               )
             ],
           ),
@@ -71,7 +71,7 @@ class SavedPapers extends StatelessWidget {
       child: Row(
         children: [
           SvgIcon(
-            icone: e.icon,
+            icon: e.icon,
           ),
           SizedBox(width: 40),
           Text(

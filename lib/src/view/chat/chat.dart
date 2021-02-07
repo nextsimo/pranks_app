@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prank/src/utils/styles.dart';
+import 'package:prank/src/widgets/inputs/keyboard_visibilty.dart';
 
 import 'package:prank/src/widgets/more/svg_icon.dart';
 
@@ -32,7 +33,7 @@ class ChatView extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SvgIcon(icone: "back"),
+                          SvgIcon(icon: "back"),
                           buildStackprofil(),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,9 +52,9 @@ class ChatView extends StatelessWidget {
                               ),
                             ],
                           ),
-                          SvgIcon(icone: "Group-21"),
-                          SvgIcon(icone: "awesome-video"),
-                          SvgIcon(icone: "accept_call"),
+                          SvgIcon(icon: "Group-21"),
+                          SvgIcon(icon: "awesome-video"),
+                          SvgIcon(icon: "accept_call"),
                         ],
                       ),
                       Divider(
@@ -66,7 +67,7 @@ class ChatView extends StatelessWidget {
                   ),
                 ),
               ),
-              buildRowSendMsg(),
+              buildRowSendMsg(context),
             ],
           ),
           Align(
@@ -109,41 +110,50 @@ class ChatView extends StatelessWidget {
     );
   }
 
-  Row buildRowSendMsg() {
-    return Row(
-      children: [
-        Expanded(
-          child: buildTextField(),
-        ),
-        InkWell(
-          onTap: () {
-            //TODO
-          },
-          child: Padding(
-            padding: const EdgeInsets.only(right: 15),
-            child: Container(
-              height: 63,
-              width: 64,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(23),
-                color: Color(0xFFFFCE00),
+  Widget buildRowSendMsg(BuildContext context) {
+    return KeyboardVisibilityBuilder(
+      builder: (_, __, visible) {
+        return Padding(
+          padding: EdgeInsets.only(bottom: visible ? 10 : 80),
+          child: Row(
+            children: [
+              SizedBox(width: 50),
+              Expanded(
+                child: buildTextField(),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: SvgIcon(icone: "send"),
+              SizedBox(width: 10),
+              InkWell(
+                onTap: () {
+                  //TODO
+                },
+                child: Container(
+                  height: 63,
+                  width: 64,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(23),
+                    color: Color(0xFFFFCE00),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: SvgIcon(icon: "send"),
+                  ),
+                ),
               ),
-            ),
+              SizedBox(width: 10),
+            ],
           ),
-        )
-      ],
+        );
+      },
     );
   }
 
   Widget buildTextField() {
-    return Padding(
-      padding: const EdgeInsets.all(20),
+    return SizedBox(
+      height: 65,
       child: TextField(
-        maxLines: 2,
+        expands: true,
+        maxLength: null,
+        maxLines: null,
         decoration: InputDecoration(
           hintText: "Text Message",
           hintStyle: TextStyle(
@@ -151,7 +161,6 @@ class ChatView extends StatelessWidget {
             color: AppColor.black,
           ),
           fillColor: Colors.white,
-          contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           filled: true,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(21),

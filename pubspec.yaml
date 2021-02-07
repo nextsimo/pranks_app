@@ -32,6 +32,7 @@ dependencies:
   flutter_svg:
   carousel_slider: ^2.3.1
   camera: ^0.7.0+1
+  provider:
 
 
 dev_dependencies:

@@ -16,7 +16,7 @@ class SocialIcon extends StatelessWidget {
           border: Border.all(color: Color(0xff3E3E3E), width: 2.0)),
       child: Center(
           child: SvgIcon(
-        icone: icon,
+        icon: icon,
       )),
     );
   }

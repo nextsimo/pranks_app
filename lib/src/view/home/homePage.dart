@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prank/src/utils/device.dart';
 import 'package:prank/src/view/home/custom_slider.dart';
 
 import 'package:prank/src/widgets/more/svg_icon.dart';
@@ -8,69 +9,60 @@ class HommePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: Color(0xFF303030),
-      child: Container(
-        child: Column(
-          children: [
-            buildAppBar(),
-            SizedBox(
-              height: 25,
-            ),
-            buildContainer('Recently wallpapers'),
-            SizedBox(
-              height: 28,
-            ),
-            Container(
-              child: Column(
-                children: [
-                  CarouselWithIndicatorDemo(),
-                ],
+      child: SizedBox(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              buildAppBar(),
+              SizedBox(height: 25),
+              buildContainer('Recently wallpapers'),
+              CarouselWithIndicatorDemo(),
+              SizedBox(height: 123),
+              buildContainer(
+                "Popular Wallpapers",
               ),
-            ),
-            SizedBox(height: 123),
-            buildContainer(
-              "Popular Wallpapers",
-            ),
-            SizedBox(height: 18),
-            Padding(
-              padding: const EdgeInsets.only(left: 10, right: 5),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 65,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(14),
-                            image: DecorationImage(
-                              image: AssetImage("assets/img.webp"),
-                              fit: BoxFit.cover,
+              SizedBox(height: 18),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 12),
+                width: Device.width,
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 80,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(14),
+                              image: DecorationImage(
+                                image: AssetImage("assets/img.webp"),
+                                fit: BoxFit.cover,
+                              ),
                             ),
+                            alignment: Alignment.bottomLeft,
+                            child: buildMiniCard("Adventure"),
                           ),
-                          alignment: Alignment.bottomLeft,
-                          child: buildMiniCard("Adventure"),
-                        ),
-                        SizedBox(height: 21),
-                        Container(
-                          height: 65,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(14),
-                            image: DecorationImage(
-                              image: AssetImage("assets/img.webp"),
-                              fit: BoxFit.cover,
+                          SizedBox(height: 21),
+                          Container(
+                            height: 80,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(14),
+                              image: DecorationImage(
+                                image: AssetImage("assets/img.webp"),
+                                fit: BoxFit.cover,
+                              ),
                             ),
+                            alignment: Alignment.bottomLeft,
+                            child: buildMiniCard("Arcade"),
                           ),
-                          alignment: Alignment.bottomLeft,
-                          child: buildMiniCard("Arcade"),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(width: 14),
-                  Expanded(
-                    child: Container(
+                    SizedBox(width: 14),
+                    Container(
                       width: 152,
-                      height: 151,
+                      height: 180,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(14),
                         image: DecorationImage(
@@ -81,61 +73,56 @@ class HommePage extends StatelessWidget {
                       alignment: Alignment.bottomLeft,
                       child: buildMiniCard("Action"),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            SizedBox(height: 21),
-            Expanded(
-              child: Container(
+              SizedBox(height: 21),
+              Container(
+                height: 150,
                 decoration: BoxDecoration(
                   color: Colors.black,
                   borderRadius: BorderRadius.only(
                       topRight: Radius.circular(47),
                       topLeft: Radius.circular(47)),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 31),
-                  child: Row(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(10),
-                        height: 46,
-                        width: 44,
-                        decoration: BoxDecoration(
-                          color: Color(0xFF313036),
-                          borderRadius: BorderRadius.circular(15),
+                alignment: Alignment.topCenter,
+                padding: const EdgeInsets.only(left: 31, top: 15),
+                child: Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      height: 46,
+                      width: 44,
+                      decoration: BoxDecoration(
+                        color: Color(0xFF313036),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: SvgIcon(icon: "icon_person"),
+                    ),
+                    SizedBox(
+                      width: 16,
+                    ),
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Hi, welcome to the best app",
+                          style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
-                        child: SvgIcon(icone: "icon_person"),
-                      ),
-                      SizedBox(
-                        width: 16,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Text(
-                              "Hi, welcome to the best app",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 16),
-                            ),
-                          ),
-                          Text(
-                            "Have a good day",
-                            style: TextStyle(
-                                color: Color(0xFF3D3D3D), fontSize: 12),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
+                        Text(
+                          "Have a good day",
+                          style:
+                              TextStyle(color: Color(0xFF3D3D3D), fontSize: 12),
+                        ),
+                      ],
+                    )
+                  ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -217,7 +204,7 @@ class HommePage extends StatelessWidget {
           Container(
             child: Column(
               children: [
-                SvgIcon(icone: "avatar"),
+                SvgIcon(icon: "avatar"),
               ],
             ),
           ),
@@ -227,7 +214,7 @@ class HommePage extends StatelessWidget {
             child: Column(
               children: [
                 SvgIcon(
-                  icone: "Group",
+                  icon: "Group",
                 )
               ],
             ),

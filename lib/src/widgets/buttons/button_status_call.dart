@@ -96,7 +96,7 @@ class _ButtonStatusCallState extends State<ButtonStatusCall> {
               ],
             ),
             SvgIcon(
-              icone: "locked",
+              icon: "locked",
             ),
           ],
         ),

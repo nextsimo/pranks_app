@@ -49,7 +49,7 @@ class LockedView extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 10),
       child: Row(
         children: [
-          SvgIcon(icone: e.icon),
+          SvgIcon(icon: e.icon),
           SizedBox(width: 6),
           Text(
             e.textStep,
@@ -71,7 +71,7 @@ class LockedView extends StatelessWidget {
             height: 12,
           ),
           SvgIcon(
-            icone: "lock",
+            icon: "lock",
           ),
           SizedBox(height: 10),
           Text(title,

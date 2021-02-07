@@ -32,7 +32,7 @@ class ProfileDetailView extends StatelessWidget {
                   bottom: 0,
                   right: 0,
                   child: SvgIcon(
-                    icone: "add",
+                    icon: "add",
                   ),
                 )
               ],
@@ -57,7 +57,7 @@ class ProfileDetailView extends StatelessWidget {
       child: Row(
         children: [
           SvgIcon(
-            icone: e.icon,
+            icon: e.icon,
           ),
           SizedBox(
             width: 28,
@@ -77,7 +77,7 @@ class ProfileDetailView extends StatelessWidget {
         style: TextStyle(fontSize: 24, color: Colors.white),
         decoration: InputDecoration(
           suffixIcon: SvgIcon(
-            icone: "edite",
+            icon: "edite",
           ),
           suffixIconConstraints: BoxConstraints(),
           border: InputBorder.none,

@@ -22,7 +22,7 @@ class BackAppBar extends StatelessWidget {
               margin: const EdgeInsets.only(top: 50),
               child: Center(
                 child: SvgIcon(
-                  icone: icone,
+                  icon: icone,
                   size: 13,
                 ),
               ),

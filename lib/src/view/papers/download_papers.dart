@@ -45,7 +45,7 @@ class DownloadPapers extends StatelessWidget {
       child: Row(
         children: [
           SvgIcon(
-            icone: e.icon,
+            icon: e.icon,
           ),
         ],
       ),

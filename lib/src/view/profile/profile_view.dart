@@ -57,7 +57,7 @@ class ProfileView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgIcon(
-              icone: e.icon,
+              icon: e.icon,
             ),
             SizedBox(
               width: 19,
@@ -91,7 +91,7 @@ class ProfileView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SvgIcon(
-                icone: "logout",
+                icon: "logout",
               ),
               SizedBox(
                 width: 5.4,

@@ -17,7 +17,7 @@ class AppBarWiithText extends StatelessWidget {
               back(context);
             },
             child: SvgIcon(
-              icone: "back",
+              icon: "back",
             ),
           ),
           SizedBox(

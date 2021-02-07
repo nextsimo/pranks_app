@@ -27,7 +27,7 @@ class _IconSvgState extends State<IconSvg> {
         ),
         child: Padding(
           padding: const EdgeInsets.all(20),
-          child: SvgIcon(icone: widget.icon),
+          child: SvgIcon(icon: widget.icon),
         ),
       ),
     );

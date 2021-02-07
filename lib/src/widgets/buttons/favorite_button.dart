@@ -18,7 +18,7 @@ class _FavoriteButtonState extends State<FavoriteButton> {
       },
       child: Container(
         child: SvgIcon(
-          icone: "heart_favorite",
+          icon: "heart_favorite",
           color: selected ? Colors.red : Colors.white,
         ),
       ),

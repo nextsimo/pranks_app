@@ -65,7 +65,7 @@ class IncommingCall extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(30),
                 child: SvgIcon(
-                  icone: "decline_call",
+                  icon: "decline_call",
                 ),
               ),
             ),
@@ -83,7 +83,7 @@ class IncommingCall extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(30),
                 child: SvgIcon(
-                  icone: "accept_call",
+                  icon: "accept_call",
                 ),
               ),
             ),
@@ -101,7 +101,7 @@ class IncommingCall extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(30),
                 child: SvgIcon(
-                  icone: "message",
+                  icon: "message",
                 ),
               ),
             ),
