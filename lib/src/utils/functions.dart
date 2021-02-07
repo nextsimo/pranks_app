@@ -8,3 +8,12 @@ void navigateTo(BuildContext context, Widget page) {
 void back(BuildContext context) {
   Navigator.of(context).pop();
 }
+
+customShwoBottomSheet(Widget widget, BuildContext context) {
+  showBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return widget;
+    },
+  );
+}
