@@ -32,7 +32,7 @@ class BuildBottomAppBarIcon extends StatelessWidget {
             child: Center(
               child: SvgIcon(
                 icon: icon,
-                color: selected ? Colors.blue : Colors.blueGrey,
+                color: selected ? Colors.white : Color(0xffA8A8A8),
               ),
             ),
           );

@@ -14,66 +14,61 @@ class ChatView extends StatelessWidget {
     ChatMessage(messageContent: "ehhhh, doing OK.", messageType: "receiver"),
     ChatMessage(
         messageContent: "Is there any thing wrong?", messageType: "sender"),
+    ChatMessage(messageContent: "ehhhh, doing OK.", messageType: "receiver"),
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFF313036),
-      body: Stack(
+    return Material(
+      color: Color(0xFF313036),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 30),
-                  child: Column(
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 30),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      SvgIcon(icon: "back"),
+                      buildStackprofil(),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SvgIcon(icon: "back"),
-                          buildStackprofil(),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Lina Thomson",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              Text(
-                                "Online",
-                                style: TextStyle(
-                                    fontSize: 13, color: Color(0xFFE6E6E6)),
-                              ),
-                            ],
+                          Text(
+                            "Lina Thomson",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                            ),
                           ),
-                          SvgIcon(icon: "Group-21"),
-                          SvgIcon(icon: "awesome-video"),
-                          SvgIcon(icon: "accept_call"),
+                          Text(
+                            "Online",
+                            style: TextStyle(
+                                fontSize: 13, color: Color(0xFFE6E6E6)),
+                          ),
                         ],
                       ),
-                      Divider(
-                        color: Color(0xFFE6E6E6),
-                        thickness: 1,
-                      ),
-                      Text("Today",
-                          style: TextStyle(fontSize: 15, color: Colors.white)),
+                      SvgIcon(icon: "Group-21"),
+                      SvgIcon(icon: "awesome-video"),
+                      SvgIcon(icon: "accept_call"),
                     ],
                   ),
-                ),
+                  Divider(
+                    color: Color(0xFFE6E6E6),
+                    thickness: 1,
+                  ),
+                  Text("Today",
+                      style: TextStyle(fontSize: 15, color: Colors.white)),
+                ],
               ),
-              buildRowSendMsg(context),
-            ],
+            ),
           ),
-          Align(
-            alignment: Alignment.center,
-            child: SingleChildScrollView(
-              child: ListView.builder(
+          Column(
+            children: [
+              ListView.builder(
                 itemCount: messages.length,
                 shrinkWrap: true,
                 padding: EdgeInsets.only(top: 10, bottom: 10),
@@ -103,8 +98,9 @@ class ChatView extends StatelessWidget {
                   );
                 },
               ),
-            ),
+            ],
           ),
+          buildRowSendMsg(context)
         ],
       ),
     );

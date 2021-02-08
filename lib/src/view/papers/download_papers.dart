@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:prank/src/utils/functions.dart';
 import 'package:prank/src/widgets/app_bar/back_app_bar.dart';
+import 'package:prank/src/widgets/more/saved_papers.dart';
 
 import 'package:prank/src/widgets/more/svg_icon.dart';
 
 class DownloadPapers extends StatelessWidget {
-  final List<IconsPapers> list = [
-    IconsPapers(icon: "share", function: null),
-    IconsPapers(icon: "download", function: null),
-    IconsPapers(icon: "favorite", function: null),
-    IconsPapers(icon: "Ellipse", function: null),
-  ];
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Color(0xFF202020),
-      child: SingleChildScrollView(
+    final List<IconsPapers> list = [
+      IconsPapers(icon: "share", widget: SizedBox()),
+      IconsPapers(icon: "download", widget: SizedBox()),
+      IconsPapers(icon: "favorite-border", widget: SavedPapers()),
+      IconsPapers(icon: "Ellipse", widget: SavedPapers()),
+    ];
+    return Scaffold(
+      backgroundColor: Color(0xFF202020),
+      body: SingleChildScrollView(
         padding: EdgeInsets.only(bottom: 50),
         child: Column(children: [
           BackAppBar(
@@ -31,7 +33,7 @@ class DownloadPapers extends StatelessWidget {
                   width: 307,
                 ),
               ),
-              Row(children: list.map((e) => buildIcons(e)).toList()),
+              Row(children: list.map((e) => buildIcons(e, context)).toList()),
             ],
           ),
         ]),
@@ -39,23 +41,26 @@ class DownloadPapers extends StatelessWidget {
     );
   }
 
-  Widget buildIcons(IconsPapers e) {
+  Widget buildIcons(IconsPapers e, BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 65, top: 36),
-      child: Row(
-        children: [
-          SvgIcon(
+      padding: const EdgeInsets.only(left: 60, top: 36),
+      child: Container(
+        child: InkWell(
+          onTap: () {
+            showbootmdialogue(context, e.widget);
+          },
+          child: SvgIcon(
             icon: e.icon,
           ),
-        ],
+        ),
       ),
     );
   }
 }
 
 class IconsPapers {
-  final Widget function;
+  final Widget widget;
   final String icon;
 
-  IconsPapers({this.function, this.icon});
+  IconsPapers({this.widget, this.icon});
 }

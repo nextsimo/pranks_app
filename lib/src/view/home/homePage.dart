@@ -16,6 +16,7 @@ class HommePage extends StatelessWidget {
               buildAppBar(),
               SizedBox(height: 25),
               buildContainer('Recently wallpapers'),
+              SizedBox(height: 18),
               CarouselWithIndicatorDemo(),
               SizedBox(height: 123),
               buildContainer(

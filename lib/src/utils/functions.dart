@@ -8,3 +8,11 @@ void navigateTo(BuildContext context, Widget page) {
 void back(BuildContext context) {
   Navigator.of(context).pop();
 }
+
+showbootmdialogue(BuildContext context, Widget widget) {
+  showBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return widget;
+      });
+}

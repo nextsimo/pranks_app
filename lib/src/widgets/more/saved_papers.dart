@@ -12,55 +12,56 @@ class SavedPapers extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 419,
-      width: 414,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-            topRight: Radius.circular(44), topLeft: Radius.circular(44)),
-      ),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Text(
-                "What would you like to do?",
+    return Scaffold(
+      body: Container(
+        height: 419,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(44), topLeft: Radius.circular(44)),
+        ),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Text(
+                  "What would you like to do?",
+                  style: TextStyle(
+                    fontSize: 21,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                Container(
+                  width: 34,
+                  height: 34,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xFFF3F4F6),
+                  ),
+                  child: SvgIcon(icon: "colose"),
+                )
+              ],
+            ),
+            Center(
+              child: Text(
+                "Select here",
                 style: TextStyle(
-                  fontSize: 21,
+                  fontSize: 14,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: Color(0xFF5F5F5F),
                 ),
               ),
-              Container(
-                width: 34,
-                height: 34,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(0xFFF3F4F6),
-                ),
-                child: SvgIcon(icon: "colose"),
-              )
-            ],
-          ),
-          Center(
-            child: Text(
-              "Select here",
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF5F5F5F),
+            ),
+            Row(children: list.map((e) => buildIcons(e)).toList()),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: WhiteContainer(
+                color: Color(0xFFBEBEBE),
               ),
-            ),
-          ),
-          Row(children: list.map((e) => buildIcons(e)).toList()),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: WhiteContainer(
-              color: Color(0xFFBEBEBE),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
