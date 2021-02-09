@@ -23,7 +23,8 @@ class CustomBottomAppBar extends StatelessWidget {
       builder: (BuildContext context, __) {
         return Container(
           width: Device.width,
-          padding: EdgeInsets.only(top: 4, bottom: 0, left: 8, right: 8),
+          padding: EdgeInsets.only(left: 8, right: 8),
+          height: 100,
           decoration: buildBoxDecoration(),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -47,8 +48,9 @@ class CustomBottomAppBar extends StatelessWidget {
 
   BoxDecoration buildBoxDecoration() {
     return BoxDecoration(
-      color: Color(0xfffffefe),
-      borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      color: Color(0xff313036),
+      borderRadius: BorderRadius.only(
+          topRight: Radius.circular(47), topLeft: Radius.circular(47)),
       boxShadow: [
         BoxShadow(
           color: Color.fromRGBO(0, 0, 0, 0.09),
