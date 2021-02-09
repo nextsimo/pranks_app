@@ -20,8 +20,7 @@ class ChatView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: Color(0xFF313036),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Stack(
         children: [
           Padding(
             padding: const EdgeInsets.all(10),
@@ -66,41 +65,41 @@ class ChatView extends StatelessWidget {
               ),
             ),
           ),
-          Column(
-            children: [
-              ListView.builder(
-                itemCount: messages.length,
-                shrinkWrap: true,
-                padding: EdgeInsets.only(top: 10, bottom: 10),
-                physics: NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return Container(
-                    padding: EdgeInsets.only(
-                        left: 14, right: 14, top: 6, bottom: 10),
-                    child: Align(
-                      alignment: (messages[index].messageType == "receiver"
-                          ? Alignment.topLeft
-                          : Alignment.topRight),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: (messages[index].messageType == "receiver"
-                              ? Colors.white
-                              : Color(0xFFFFCE00)),
-                        ),
-                        padding: EdgeInsets.all(16),
-                        child: Text(
-                          messages[index].messageContent,
-                          style: TextStyle(fontSize: 15),
-                        ),
+          Center(
+            child: ListView.builder(
+              itemCount: messages.length,
+              shrinkWrap: true,
+              padding: EdgeInsets.only(top: 10, bottom: 10),
+              physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return Container(
+                  padding:
+                      EdgeInsets.only(left: 14, right: 14, top: 6, bottom: 10),
+                  child: Align(
+                    alignment: (messages[index].messageType == "receiver"
+                        ? Alignment.topLeft
+                        : Alignment.topRight),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: (messages[index].messageType == "receiver"
+                            ? Colors.white
+                            : Color(0xFFFFCE00)),
+                      ),
+                      padding: EdgeInsets.all(16),
+                      child: Text(
+                        messages[index].messageContent,
+                        style: TextStyle(fontSize: 15),
                       ),
                     ),
-                  );
-                },
-              ),
-            ],
+                  ),
+                );
+              },
+            ),
           ),
-          buildRowSendMsg(context)
+          Align(
+              alignment: Alignment.bottomCenter,
+              child: buildRowSendMsg(context))
         ],
       ),
     );
@@ -110,7 +109,7 @@ class ChatView extends StatelessWidget {
     return KeyboardVisibilityBuilder(
       builder: (_, __, visible) {
         return Padding(
-          padding: EdgeInsets.only(bottom: visible ? 10 : 80),
+          padding: EdgeInsets.only(bottom: visible ? 10 : 100),
           child: Row(
             children: [
               SizedBox(width: 50),

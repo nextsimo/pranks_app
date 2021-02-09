@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prank/src/widgets/more/svg_icon.dart';
+import 'package:share/share.dart';
 
 class IconSvg extends StatefulWidget {
   final String icon;
@@ -15,7 +16,9 @@ class _IconSvgState extends State<IconSvg> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => widget.test,
+      onTap: () {
+        Share.share('Call Time');
+      },
       child: Container(
         height: 69,
         decoration: BoxDecoration(

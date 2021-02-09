@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:prank/src/utils/functions.dart';
+
 import 'package:prank/src/widgets/app_bar/back_app_bar.dart';
 import 'package:prank/src/widgets/more/saved_papers.dart';
 
 import 'package:prank/src/widgets/more/svg_icon.dart';
 
-class DownloadPapers extends StatelessWidget {
+class DownloadPapers extends StatefulWidget {
+  @override
+  _DownloadPapersState createState() => _DownloadPapersState();
+}
+
+class _DownloadPapersState extends State<DownloadPapers> {
   @override
   Widget build(BuildContext context) {
     final List<IconsPapers> list = [
-      IconsPapers(icon: "share", widget: SizedBox()),
-      IconsPapers(icon: "download", widget: SizedBox()),
-      IconsPapers(icon: "favorite-border", widget: SavedPapers()),
-      IconsPapers(icon: "Ellipse", widget: SavedPapers()),
+      IconsPapers(icon: "share", widget: () {}),
+      IconsPapers(icon: "download", widget: () {}),
+      IconsPapers(icon: "favorite-border", widget: () {}),
+      IconsPapers(icon: "Ellipse", widget: () => show(context)),
     ];
     return Scaffold(
       backgroundColor: Color(0xFF202020),
@@ -33,7 +38,10 @@ class DownloadPapers extends StatelessWidget {
                   width: 307,
                 ),
               ),
-              Row(children: list.map((e) => buildIcons(e, context)).toList()),
+              SizedBox(height: 10),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: list.map((e) => buildIcons(e)).toList()),
             ],
           ),
         ]),
@@ -41,25 +49,30 @@ class DownloadPapers extends StatelessWidget {
     );
   }
 
-  Widget buildIcons(IconsPapers e, BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 60, top: 36),
-      child: Container(
-        child: InkWell(
-          onTap: () {
-            showbootmdialogue(context, e.widget);
-          },
-          child: SvgIcon(
-            icon: e.icon,
-          ),
+  Widget buildIcons(IconsPapers e) {
+    return InkWell(
+      onTap: () => show(context),
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: SvgIcon(
+          icon: e.icon,
         ),
       ),
     );
   }
 }
 
+void show(BuildContext context) {
+  showModalBottomSheet<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return SavedPapers();
+    },
+  );
+}
+
 class IconsPapers {
-  final Widget widget;
+  final Function widget;
   final String icon;
 
   IconsPapers({this.widget, this.icon});

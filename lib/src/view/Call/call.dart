@@ -3,6 +3,7 @@ import 'package:prank/src/widgets/more/container_white.dart';
 import 'package:prank/src/widgets/more/svg_icon.dart';
 import 'package:prank/src/widgets/more/icon_svg.dart';
 import 'package:prank/src/widgets/more/text.dart';
+import 'package:share/share.dart';
 
 class Call extends StatelessWidget {
   @override
@@ -95,7 +96,13 @@ class Call extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      IconSvg(icon: "person-add"),
+                      IconSvg(
+                        icon: "person-add",
+                        test: () {
+                          Share.share(
+                              'check out my website https://protocoderspoint.com/');
+                        },
+                      ),
                       IconSvg(icon: "awesome-video"),
                       buildContainer(),
                     ],

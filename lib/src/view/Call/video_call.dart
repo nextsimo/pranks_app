@@ -5,7 +5,7 @@ import 'package:prank/src/widgets/more/svg_icon.dart';
 
 class VideoCall extends StatelessWidget {
   final List<Icons> list = [
-    Icons(icon: "message"),
+    Icons(icon: "chat_call"),
     Icons(icon: "accept_call"),
     Icons(icon: "volume-mute"),
     Icons(icon: "accept_call", backgrnd: Color(0xffFF0000)),
@@ -15,7 +15,7 @@ class VideoCall extends StatelessWidget {
     return Material(
       color: Color(0xff1A1920),
       child: SingleChildScrollView(
-        padding: EdgeInsets.only(bottom: 100),
+        padding: EdgeInsets.only(bottom: 90),
         child: Column(
           children: [
             Stack(
@@ -60,7 +60,7 @@ class VideoCall extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(10),
                   child: Column(
                     children: [
                       Text(
@@ -95,7 +95,7 @@ class VideoCall extends StatelessWidget {
   Widget buildCContainer(Icons e) {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(8),
         child: InkWell(
           onTap: () {
             //TODO

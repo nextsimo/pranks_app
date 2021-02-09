@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:prank/src/utils/device.dart';
+import 'package:prank/src/utils/functions.dart';
 import 'package:prank/src/widgets/more/svg_icon.dart';
 
 import 'container_white.dart';
@@ -12,56 +14,60 @@ class SavedPapers extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        height: 419,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-              topRight: Radius.circular(44), topLeft: Radius.circular(44)),
-        ),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Text(
-                  "What would you like to do?",
-                  style: TextStyle(
-                    fontSize: 21,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-                Container(
-                  width: 34,
-                  height: 34,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0xFFF3F4F6),
-                  ),
-                  child: SvgIcon(icon: "colose"),
-                )
-              ],
-            ),
-            Center(
-              child: Text(
-                "Select here",
+    return Container(
+      height: Device.height,
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "What would you like to do?",
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 21,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF5F5F5F),
+                  color: Colors.black,
                 ),
               ),
-            ),
-            Row(children: list.map((e) => buildIcons(e)).toList()),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: WhiteContainer(
-                color: Color(0xFFBEBEBE),
+              SizedBox(width: 10),
+              Container(
+                width: 34,
+                height: 34,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Color(0xFFF3F4F6),
+                ),
+                child: InkWell(
+                  onTap: () => back(context),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: SvgIcon(
+                      icon: "close",
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+          Center(
+            child: Text(
+              "Select here",
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF5F5F5F),
               ),
-            )
-          ],
-        ),
+            ),
+          ),
+          Column(children: list.map((e) => buildIcons(e)).toList()),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: WhiteContainer(
+              color: Color(0xFFBEBEBE),
+            ),
+          )
+        ],
       ),
     );
   }
