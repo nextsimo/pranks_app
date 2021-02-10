@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:prank/src/utils/device.dart';
+import 'package:prank/src/utils/functions.dart';
 
 class ButtonContinue extends StatefulWidget {
   final Color color;
+  final Widget page;
 
-  const ButtonContinue({Key key, this.color = Colors.white}) : super(key: key);
+  const ButtonContinue({Key key, this.color = Colors.white, this.page})
+      : super(key: key);
 
   @override
   _ButtonContinueState createState() => _ButtonContinueState();
@@ -16,13 +20,14 @@ class _ButtonContinueState extends State<ButtonContinue> {
     return InkWell(
       onTap: () {
         setState(() {
+          navigateTo(context, widget.page);
           selected = !selected;
         });
       },
       child: Column(
         children: [
           Container(
-            width: 222,
+            width: Device.width * 0.6,
             height: 61,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),

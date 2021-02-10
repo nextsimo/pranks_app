@@ -4,7 +4,7 @@ class ContainerBlack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 160,
+      height: 180,
       decoration: BoxDecoration(
         color: Colors.black,
         borderRadius: BorderRadius.only(

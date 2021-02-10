@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:prank/src/utils/functions.dart';
+import 'package:prank/src/view/Call/time_to_call.dart';
+import 'package:prank/src/view/Call/video_call.dart';
 import 'package:prank/src/widgets/app_bar/app_bar_emoji.dart';
 import 'package:prank/src/widgets/buttons/button_call.dart';
 import 'package:prank/src/widgets/buttons/button_continue.dart';
 import 'package:prank/src/widgets/buttons/button_status_call.dart';
+import 'package:prank/src/widgets/more/ads_container.dart';
 import 'package:prank/src/widgets/more/container_black.dart';
 
 class TypeOfCallVideo extends StatelessWidget {
@@ -11,6 +15,7 @@ class TypeOfCallVideo extends StatelessWidget {
     return Material(
       color: Color(0xFF212121),
       child: Stack(
+        alignment: Alignment.bottomCenter,
         children: [
           SingleChildScrollView(
             padding: EdgeInsets.only(bottom: 200),
@@ -18,6 +23,7 @@ class TypeOfCallVideo extends StatelessWidget {
               children: [
                 AppBarWithEmoji(
                   text: "Type of Video Call",
+                  page: () => navigateTo(context, TimeToCall()),
                 ),
                 SizedBox(height: 20),
                 Container(
@@ -58,14 +64,20 @@ class TypeOfCallVideo extends StatelessWidget {
                 SizedBox(height: 21),
                 ButtonContinue(
                   color: Color(0xFFFFCE00),
+                  page: VideoCall(),
                 ),
                 SizedBox(height: 21),
               ],
             ),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: ContainerBlack(),
+          Stack(
+            children: [
+              ContainerBlack(),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: AdsContainer(),
+              ),
+            ],
           ),
         ],
       ),

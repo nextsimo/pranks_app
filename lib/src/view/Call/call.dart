@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:prank/src/utils/device.dart';
+import 'package:prank/src/utils/functions.dart';
+import 'package:prank/src/view/navigation/navigation_view.dart';
+import 'package:prank/src/widgets/more/ads_container.dart';
 import 'package:prank/src/widgets/more/container_white.dart';
 import 'package:prank/src/widgets/more/svg_icon.dart';
 import 'package:prank/src/widgets/more/icon_svg.dart';
@@ -100,12 +103,11 @@ class Call extends StatelessWidget {
                       IconSvg(
                         icon: "person-add",
                         test: () {
-                          Share.share(
-                              'check out my website https://protocoderspoint.com/');
+                          Share.share('check out my website');
                         },
                       ),
                       IconSvg(icon: "awesome-video"),
-                      buildContainer(),
+                      buildContainer(context),
                     ],
                   ),
                   SizedBox(height: 8),
@@ -118,17 +120,18 @@ class Call extends StatelessWidget {
                       ]),
                 ],
               ),
-            )
+            ),
+            AdsContainer(),
           ],
         ),
       ),
     );
   }
 
-  Widget buildContainer() {
+  Widget buildContainer(BuildContext context) {
     return InkWell(
       onTap: () {
-        //TODO
+        navigateTo(context, NavigationView());
       },
       child: Container(
         width: 69,

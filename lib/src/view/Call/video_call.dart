@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:prank/src/services/video_service.dart';
 import 'package:prank/src/utils/device.dart';
+import 'package:prank/src/utils/functions.dart';
 import 'package:prank/src/utils/locator.dart';
+import 'package:prank/src/view/Call/type_of_call_video.dart';
 import 'package:prank/src/view/camera/camera_view.dart';
+import 'package:prank/src/widgets/more/ads_container.dart';
 import 'package:prank/src/widgets/more/svg_icon.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoCall extends StatelessWidget {
-  final List<Icons> list = [
-    Icons(icon: "chat_call"),
-    Icons(icon: "accept_call"),
-    Icons(icon: "volume-mute"),
-    Icons(icon: "accept_call", backgrnd: Color(0xffFF0000)),
-  ];
   @override
   Widget build(BuildContext context) {
+    final List<Icons> list = [
+      Icons(icon: "chat_call", page: () {}),
+      Icons(icon: "accept_call", page: () {}),
+      Icons(icon: "volume-mute", page: () {}),
+      Icons(
+          icon: "accept_call",
+          backgrnd: Color(0xffFF0000),
+          page: () => back(context)),
+    ];
     final VideoPlayerService videoPlayerService = locator<VideoPlayerService>();
     videoPlayerService.loadVideo();
     var align = Padding(
@@ -50,7 +56,7 @@ class VideoCall extends StatelessWidget {
                         bottomRight: Radius.circular(45),
                       ),
                       child: AspectRatio(
-                        aspectRatio: Device.width / Device.height * 0.76,
+                        aspectRatio: Device.width / Device.height * 0.86,
                         child: VideoPlayer(
                           videoPlayerService.videoPlayerController,
                         ),
@@ -90,6 +96,7 @@ class VideoCall extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: list.map((e) => buildCContainer(e)).toList(),
             ),
+            AdsContainer(),
           ],
         ),
       ),
@@ -101,9 +108,7 @@ class VideoCall extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8),
         child: InkWell(
-          onTap: () {
-            //TODO
-          },
+          onTap: e.page,
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
@@ -123,6 +128,7 @@ class VideoCall extends StatelessWidget {
 class Icons {
   final String icon;
   final Color backgrnd;
+  final Function page;
 
-  Icons({this.icon, this.backgrnd = const Color(0xff707070)});
+  Icons({this.page, this.icon, this.backgrnd = const Color(0xff707070)});
 }

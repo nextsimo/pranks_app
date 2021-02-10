@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prank/src/utils/functions.dart';
 
 import 'package:prank/src/widgets/app_bar/back_app_bar.dart';
 import 'package:prank/src/widgets/more/saved_papers.dart';
@@ -26,6 +27,7 @@ class _DownloadPapersState extends State<DownloadPapers> {
         child: Column(children: [
           BackAppBar(
             icone: "back",
+            function: () => back(context),
           ),
           Column(
             children: [
@@ -51,7 +53,7 @@ class _DownloadPapersState extends State<DownloadPapers> {
 
   Widget buildIcons(IconsPapers e) {
     return InkWell(
-      onTap: () => show(context),
+      onTap: e.widget,
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: SvgIcon(
@@ -64,6 +66,8 @@ class _DownloadPapersState extends State<DownloadPapers> {
 
 void show(BuildContext context) {
   showModalBottomSheet<void>(
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(44))),
     context: context,
     builder: (BuildContext context) {
       return SavedPapers();

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:prank/src/utils/functions.dart';
 import 'package:prank/src/widgets/more/svg_icon.dart';
 
 class AppBarWithEmoji extends StatelessWidget {
   final String text;
+  final Function page;
 
-  const AppBarWithEmoji({Key key, this.text}) : super(key: key);
+  const AppBarWithEmoji({Key key, this.text, this.page}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,11 +16,12 @@ class AppBarWithEmoji extends StatelessWidget {
           Row(
             children: [
               InkWell(
-                onTap: () {
-                  back(context);
-                },
-                child: SvgIcon(
-                  icon: "back",
+                onTap: page,
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: SvgIcon(
+                    icon: "back",
+                  ),
                 ),
               ),
               SizedBox(width: 9),

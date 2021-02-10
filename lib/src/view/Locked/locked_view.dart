@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:prank/src/utils/functions.dart';
+import 'package:prank/src/view/chat/chat.dart';
+import 'package:prank/src/view/navigation/navigation_view.dart';
 import 'package:prank/src/widgets/app_bar/back_app_bar.dart';
 import 'package:prank/src/widgets/buttons/button_continue.dart';
 import 'package:prank/src/widgets/buttons/button_locked.dart';
+import 'package:prank/src/widgets/more/ads_container.dart';
 import 'package:prank/src/widgets/more/svg_icon.dart';
 
 class LockedView extends StatelessWidget {
   final String title;
+  final Widget page;
   final List<Step> list = [
     Step(icon: "star", textStep: "Step 1 just rate the app with 5 star"),
     Step(icon: "star", textStep: "Step 2 just watch video ads promo "),
@@ -15,29 +20,32 @@ class LockedView extends StatelessWidget {
             "Step 3 just Give us 1\$ if you have it and it’s not necessary"),
   ];
 
-  LockedView({Key key, this.title}) : super(key: key);
+  LockedView({Key key, this.title, this.page}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        body(),
+        body(context),
         Align(
           alignment: Alignment.bottomCenter,
-          child: Container(
-            height: 160,
-            decoration: BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(40), topLeft: Radius.circular(40)),
-            ),
-            child: Column(children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 19, top: 18),
-                child: Column(
-                  children: list.map((e) => buildText(e)).toList(),
-                ),
+          child: Expanded(
+            child: Container(
+              height: 190,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(40),
+                    topLeft: Radius.circular(40)),
               ),
-            ]),
+              child: Column(children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 19, top: 18),
+                  child: Column(
+                    children: list.map((e) => buildText(e)).toList(),
+                  ),
+                ),
+              ]),
+            ),
           ),
         )
       ],
@@ -61,12 +69,18 @@ class LockedView extends StatelessWidget {
     );
   }
 
-  Widget body() {
+  Widget body(BuildContext context) {
     return SingleChildScrollView(
       padding: EdgeInsets.only(bottom: 200),
       child: Column(
         children: [
-          BackAppBar(icone: "close"),
+          Padding(
+            padding: const EdgeInsets.only(top: 50),
+            child: AdsContainer(),
+          ),
+          BackAppBar(
+              icone: "close",
+              function: () => navigateTo(context, NavigationView())),
           SizedBox(
             height: 12,
           ),
@@ -103,7 +117,7 @@ class LockedView extends StatelessWidget {
           SizedBox(
             height: 71,
           ),
-          ButtonContinue(),
+          ButtonContinue(page: page),
         ],
       ),
     );

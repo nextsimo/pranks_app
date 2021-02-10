@@ -16,8 +16,11 @@ class AppBarWiithText extends StatelessWidget {
             onTap: () {
               back(context);
             },
-            child: SvgIcon(
-              icon: "back",
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: SvgIcon(
+                icon: "back",
+              ),
             ),
           ),
           SizedBox(

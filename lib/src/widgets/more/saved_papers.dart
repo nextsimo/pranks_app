@@ -15,9 +15,9 @@ class SavedPapers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Device.height,
       child: Column(
         children: [
+          SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -61,11 +61,9 @@ class SavedPapers extends StatelessWidget {
             ),
           ),
           Column(children: list.map((e) => buildIcons(e)).toList()),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: WhiteContainer(
-              color: Color(0xFFBEBEBE),
-            ),
+          SizedBox(height: 20),
+          WhiteContainer(
+            color: Color(0xFFBEBEBE),
           )
         ],
       ),

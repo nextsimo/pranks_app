@@ -9,7 +9,7 @@ import 'package:prank/src/widgets/buttons/button_continue.dart';
 import 'package:prank/src/widgets/more/ads_container.dart';
 import 'package:prank/src/widgets/more/container_black.dart';
 
-class TimeToCall extends StatelessWidget {
+class TimeToCallVideo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -64,7 +64,7 @@ class TimeToCall extends StatelessWidget {
                 Container(
                   child: ButtonContinue(
                     color: Color(0xFFFFCE00),
-                    page: TypeOfCall(),
+                    page: TypeOfCallVideo(),
                   ),
                 ),
                 SizedBox(

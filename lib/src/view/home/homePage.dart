@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:prank/src/utils/device.dart';
+import 'package:prank/src/utils/functions.dart';
 import 'package:prank/src/view/home/custom_slider.dart';
+import 'package:prank/src/view/papers/recently_wallpapers.dart';
+import 'package:prank/src/view/papers/wallpapers_popular.dart';
+import 'package:prank/src/view/profile/profile_view.dart';
+import 'package:prank/src/widgets/more/ads_container.dart';
 
 import 'package:prank/src/widgets/more/svg_icon.dart';
 
@@ -16,21 +21,20 @@ class HommePage extends StatelessWidget {
               padding: EdgeInsets.only(bottom: 165),
               child: Column(
                 children: [
-                  buildAppBar(),
+                  AdsContainer(),
+                  buildAppBar(context),
                   SizedBox(height: 25),
-                  buildContainer('Recently wallpapers'),
+                  buildContainer(
+                      'Recently wallpapers', context, PopularesWallpapes()),
                   SizedBox(height: 18),
                   CarouselWithIndicatorDemo(),
                   SizedBox(height: 20),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20),
-                    height: 63,
-                    width: Device.width,
-                    color: Colors.greenAccent,
-                  ),
+                  AdsContainer(),
                   SizedBox(height: 20),
                   buildContainer(
                     "Popular Wallpapers",
+                    context,
+                    RecentlyWallpapars(),
                   ),
                   SizedBox(height: 18),
                   Container(
@@ -163,7 +167,7 @@ class HommePage extends StatelessWidget {
   }
   //'https://picsum.photos/id/$randomId/200/300'
 
-  Container buildContainer(String text) {
+  Container buildContainer(String text, BuildContext context, Widget widget) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Row(
@@ -174,17 +178,27 @@ class HommePage extends StatelessWidget {
             style: TextStyle(
                 fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
           ),
-          Text(
-            "see all",
-            style: TextStyle(
-                fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
+          InkWell(
+            onTap: () {
+              navigateTo(context, widget);
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Text(
+                "see all",
+                style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget buildAppBar() {
+  Widget buildAppBar(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 35),
       child: Row(
@@ -226,16 +240,21 @@ class HommePage extends StatelessWidget {
           ),
 /* */
           SizedBox(width: 10),
-          Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: Colors.white),
-            ),
-            child: Center(
-              child: Icon(
-                Icons.person,
-                size: 38,
-                color: Colors.grey[300],
+          InkWell(
+            onTap: () {
+              navigateTo(context, ProfileView());
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: Colors.white),
+              ),
+              child: Center(
+                child: Icon(
+                  Icons.person,
+                  size: 38,
+                  color: Colors.grey[300],
+                ),
               ),
             ),
           ),

@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:prank/src/utils/functions.dart';
 import 'package:prank/src/utils/styles.dart';
+import 'package:prank/src/view/Call/time_to_call.dart';
+import 'package:prank/src/view/Call/time_to_call_video.dart';
+import 'package:prank/src/view/home/homePage.dart';
+import 'package:prank/src/view/navigation/navigation_view.dart';
 import 'package:prank/src/widgets/inputs/keyboard_visibilty.dart';
+import 'package:prank/src/widgets/more/ads_container.dart';
 
 import 'package:prank/src/widgets/more/svg_icon.dart';
 
@@ -21,6 +27,7 @@ class ChatView extends StatelessWidget {
     return Material(
       color: Color(0xFF313036),
       child: Stack(
+        alignment: Alignment.bottomCenter,
         children: [
           Padding(
             padding: const EdgeInsets.all(10),
@@ -31,7 +38,12 @@ class ChatView extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SvgIcon(icon: "back"),
+                      InkWell(
+                          onTap: () => navigateTo(context, NavigationView()),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: SvgIcon(icon: "back"),
+                          )),
                       buildStackprofil(),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,8 +70,14 @@ class ChatView extends StatelessWidget {
                           shape: BoxShape.circle,
                         ),
                       ),
-                      SvgIcon(icon: "awesome-video"),
-                      SvgIcon(icon: "accept_call"),
+                      InkWell(
+                        onTap: () => navigateTo(context, TimeToCallVideo()),
+                        child: SvgIcon(icon: "awesome-video"),
+                      ),
+                      InkWell(
+                        onTap: () => navigateTo(context, TimeToCall()),
+                        child: SvgIcon(icon: "accept_call"),
+                      ),
                     ],
                   ),
                   Divider(
@@ -104,9 +122,11 @@ class ChatView extends StatelessWidget {
               },
             ),
           ),
-          Align(
-              alignment: Alignment.bottomCenter,
-              child: buildRowSendMsg(context))
+          buildRowSendMsg(context),
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: AdsContainer(),
+          ),
         ],
       ),
     );
@@ -116,7 +136,7 @@ class ChatView extends StatelessWidget {
     return KeyboardVisibilityBuilder(
       builder: (_, __, visible) {
         return Padding(
-          padding: EdgeInsets.only(bottom: visible ? 10 : 120),
+          padding: EdgeInsets.only(bottom: 90),
           child: Row(
             children: [
               SizedBox(width: 50),

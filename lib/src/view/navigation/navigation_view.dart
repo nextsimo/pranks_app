@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:prank/src/utils/device.dart';
 
 import 'package:prank/src/view/Call/call.dart';
+import 'package:prank/src/view/Call/time_to_call.dart';
+import 'package:prank/src/view/Call/time_to_call_video.dart';
+import 'package:prank/src/view/Call/type_of_call_video.dart';
 import 'package:prank/src/view/Call/video_call.dart';
+import 'package:prank/src/view/Locked/locked_call_view.dart';
+import 'package:prank/src/view/Locked/locked_chat_view.dart';
+import 'package:prank/src/view/Locked/locked_video_view.dart';
 import 'package:prank/src/view/chat/chat.dart';
 import 'package:prank/src/view/home/homePage.dart';
 import 'package:prank/src/view/navigation/bottom_app_bar.dart';
@@ -22,9 +28,9 @@ class NavigationView extends StatelessWidget {
         controller: pageController,
         children: [
           HommePage(),
-          ChatView(),
-          VideoCall(),
-          Call(),
+          LockedChatView(),
+          LockedVideoView(),
+          LockedCallView(),
           FavoriteWalPapers(),
         ],
       ),
