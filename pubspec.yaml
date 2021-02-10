@@ -31,10 +31,12 @@ dependencies:
   cupertino_icons: ^1.0.0
   flutter_svg:
   carousel_slider: ^2.3.1
-  camera: ^0.7.0+1
   provider:
   dependencies:
-  share: ^0.6.3+5 
+  share: ^0.6.3+5
+  camera: ^0.7.0+2 
+  get_it:
+  video_player:
 
 
 dev_dependencies:

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:prank/src/utils/device.dart';
+import 'package:prank/src/utils/functions.dart';
 import 'package:prank/src/utils/styles.dart';
+import 'package:prank/src/view/navigation/navigation_view.dart';
 import 'package:prank/src/widgets/buttons/main_button.dart';
 import 'package:prank/src/widgets/inputs/simple_input.dart';
 import 'package:prank/src/widgets/more/custom_divider.dart';
@@ -58,7 +60,9 @@ class LoginView extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
                   MainButton(
-                    ontap: () {},
+                    ontap: () {
+                      navigateTo(context, NavigationView());
+                    },
                     label: 'Sign in',
                   ),
                   SizedBox(height: 33),

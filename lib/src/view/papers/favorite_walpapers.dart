@@ -13,7 +13,7 @@ class FavoriteWalPapers extends StatelessWidget {
       child: Stack(
         children: [
           GridView.count(
-            padding: EdgeInsets.fromLTRB(14, 120, 14, 100),
+            padding: EdgeInsets.fromLTRB(14, 120, 14, 130),
             crossAxisCount: 2,
             mainAxisSpacing: 10,
             crossAxisSpacing: 10,

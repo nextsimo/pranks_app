@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prank/src/utils/device.dart';
 import 'package:prank/src/widgets/more/container_white.dart';
 import 'package:prank/src/widgets/more/svg_icon.dart';
 import 'package:prank/src/widgets/more/icon_svg.dart';
@@ -14,9 +15,9 @@ class Call extends StatelessWidget {
         padding: EdgeInsets.only(bottom: 80),
         child: Column(
           children: [
-            SizedBox(height: 65),
+            SizedBox(height: Device.height * 0.03),
             WhiteContainer(),
-            SizedBox(height: 61),
+            SizedBox(height: Device.height * 0.02),
             Stack(
               children: [
                 Container(

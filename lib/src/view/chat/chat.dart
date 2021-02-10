@@ -50,7 +50,14 @@ class ChatView extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SvgIcon(icon: "Group-21"),
+                      Container(
+                        width: 35,
+                        height: 35,
+                        decoration: BoxDecoration(
+                          color: Colors.yellowAccent,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
                       SvgIcon(icon: "awesome-video"),
                       SvgIcon(icon: "accept_call"),
                     ],
@@ -109,7 +116,7 @@ class ChatView extends StatelessWidget {
     return KeyboardVisibilityBuilder(
       builder: (_, __, visible) {
         return Padding(
-          padding: EdgeInsets.only(bottom: visible ? 10 : 100),
+          padding: EdgeInsets.only(bottom: visible ? 10 : 120),
           child: Row(
             children: [
               SizedBox(width: 50),

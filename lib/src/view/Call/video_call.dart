@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:prank/src/services/video_service.dart';
 import 'package:prank/src/utils/device.dart';
-
+import 'package:prank/src/utils/locator.dart';
+import 'package:prank/src/view/camera/camera_view.dart';
 import 'package:prank/src/widgets/more/svg_icon.dart';
+import 'package:video_player/video_player.dart';
 
 class VideoCall extends StatelessWidget {
   final List<Icons> list = [
@@ -12,75 +15,76 @@ class VideoCall extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
+    final VideoPlayerService videoPlayerService = locator<VideoPlayerService>();
+    videoPlayerService.loadVideo();
+    var align = Padding(
+      padding: const EdgeInsets.only(right: 30, top: 80),
+      child: CameraView(),
+    );
     return Material(
       color: Color(0xff1A1920),
       child: SingleChildScrollView(
-        padding: EdgeInsets.only(bottom: 90),
         child: Column(
           children: [
-            Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                Container(
-                  height: Device.height * 0.8,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(45),
-                      bottomRight: Radius.circular(45),
+            Container(
+              height: Device.height * 0.76,
+              width: Device.width,
+              child: Stack(
+                alignment: Alignment.topRight,
+                children: [
+                  Container(
+                    width: Device.width,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(45),
+                        bottomRight: Radius.circular(45),
+                      ),
+                      image: DecorationImage(
+                        image: AssetImage("assets/img.webp"),
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                    image: DecorationImage(
-                      image: AssetImage("assets/img.webp"),
-                      fit: BoxFit.cover,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(45),
+                        bottomRight: Radius.circular(45),
+                      ),
+                      child: AspectRatio(
+                        aspectRatio: Device.width / Device.height * 0.76,
+                        child: VideoPlayer(
+                          videoPlayerService.videoPlayerController,
+                        ),
+                      ),
                     ),
                   ),
-                  child: Align(
-                    alignment: Alignment.topRight,
+                  align,
+                  Align(
+                    alignment: Alignment.bottomCenter,
                     child: Padding(
-                      padding: const EdgeInsets.only(right: 30, top: 80),
-                      child: Container(
-                        width: Device.height * 0.10,
-                        height: 122,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(22),
-                          border: Border.all(
-                            color: Color(0xff313036),
-                            width: 1,
+                      padding: const EdgeInsets.all(10),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            "Lina Thomson",
+                            style: TextStyle(
+                                fontSize: 23,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
                           ),
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(22),
-                            image: DecorationImage(
-                                image: AssetImage("assets/profil.jpg"),
-                                fit: BoxFit.cover),
+                          Text(
+                            "00:32",
+                            style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
                           ),
-                        ),
+                        ],
                       ),
                     ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    children: [
-                      Text(
-                        "Lina Thomson",
-                        style: TextStyle(
-                            fontSize: 23,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        "00:32",
-                        style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

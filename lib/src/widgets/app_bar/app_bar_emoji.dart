@@ -9,7 +9,7 @@ class AppBarWithEmoji extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 20, left: 11),
+      padding: const EdgeInsets.only(top: 40, left: 11),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -34,7 +34,15 @@ class AppBarWithEmoji extends StatelessWidget {
               ),
             ],
           ),
-          SvgIcon(icon: "avatar"),
+          Container(
+            margin: EdgeInsets.only(right: 12),
+            width: 43,
+            height: 43,
+            decoration: BoxDecoration(
+              color: Colors.yellowAccent,
+              shape: BoxShape.circle,
+            ),
+          ),
         ],
       ),
     );
