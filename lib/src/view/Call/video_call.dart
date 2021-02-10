@@ -19,7 +19,11 @@ class VideoCall extends StatelessWidget {
       Icons(
           icon: "accept_call",
           backgrnd: Color(0xffFF0000),
-          page: () => back(context)),
+          page: () {
+            locator<VideoPlayerService>().videoPlayerController.pause();
+            locator<VideoPlayerService>().videoPlayerController.initialize();
+            back(context);
+          }),
     ];
     final VideoPlayerService videoPlayerService = locator<VideoPlayerService>();
     videoPlayerService.loadVideo();
@@ -27,77 +31,80 @@ class VideoCall extends StatelessWidget {
       padding: const EdgeInsets.only(right: 30, top: 80),
       child: CameraView(),
     );
-    return Material(
-      color: Color(0xff1A1920),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: Device.height * 0.76,
-              width: Device.width,
-              child: Stack(
-                alignment: Alignment.topRight,
-                children: [
-                  Container(
-                    width: Device.width,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(45),
-                        bottomRight: Radius.circular(45),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Material(
+        color: Color(0xff1A1920),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                height: Device.height * 0.76,
+                width: Device.width,
+                child: Stack(
+                  alignment: Alignment.topRight,
+                  children: [
+                    Container(
+                      width: Device.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(45),
+                          bottomRight: Radius.circular(45),
+                        ),
+                        image: DecorationImage(
+                          image: AssetImage("assets/img.webp"),
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                      image: DecorationImage(
-                        image: AssetImage("assets/img.webp"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(45),
-                        bottomRight: Radius.circular(45),
-                      ),
-                      child: AspectRatio(
-                        aspectRatio: Device.width / Device.height * 0.86,
-                        child: VideoPlayer(
-                          videoPlayerService.videoPlayerController,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(45),
+                          bottomRight: Radius.circular(45),
+                        ),
+                        child: AspectRatio(
+                          aspectRatio: Device.width / Device.height * 0.86,
+                          child: VideoPlayer(
+                            videoPlayerService.videoPlayerController,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  align,
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            "Lina Thomson",
-                            style: TextStyle(
-                                fontSize: 23,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            "00:32",
-                            style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
+                    align,
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              "Lina Thomson",
+                              style: TextStyle(
+                                  fontSize: 23,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "00:32",
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: list.map((e) => buildCContainer(e)).toList(),
-            ),
-            AdsContainer(),
-          ],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: list.map((e) => buildCContainer(e)).toList(),
+              ),
+              AdsContainer(),
+            ],
+          ),
         ),
       ),
     );

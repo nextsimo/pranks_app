@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:prank/src/utils/device.dart';
 import 'package:prank/src/widgets/more/container_white.dart';
 import 'package:prank/src/widgets/more/svg_icon.dart';
 
 class IncommingCall extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Device.init(context);
     return Material(
       color: Color(0xFF313036),
       child: SingleChildScrollView(
@@ -38,7 +40,15 @@ class IncommingCall extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 130),
+            SizedBox(height: 10),
+            Container(
+              width: Device.width,
+              height: Device.height * 0.18,
+              color: Colors.lime,
+              child: Center(
+                child: Text('ADS'),
+              ),
+            ),
             buildPaddingCall()
           ],
         ),
@@ -102,6 +112,7 @@ class IncommingCall extends StatelessWidget {
                 padding: const EdgeInsets.all(30),
                 child: SvgIcon(
                   icon: "message",
+                  color: Colors.white,
                 ),
               ),
             ),

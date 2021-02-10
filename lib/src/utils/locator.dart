@@ -5,6 +5,6 @@ import 'package:prank/src/services/video_service.dart';
 final locator = GetIt.instance;
 
 void setup() {
-  locator.registerSingleton<CameraService>(CameraService());
   locator.registerSingleton<VideoPlayerService>(VideoPlayerService());
+  locator.registerSingleton<CameraService>(CameraService());
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prank/src/view/animation/box_animation.dart';
 import 'package:prank/src/widgets/more/svg_icon.dart';
 
 class AppBarWithEmoji extends StatelessWidget {
@@ -35,14 +36,9 @@ class AppBarWithEmoji extends StatelessWidget {
               ),
             ],
           ),
-          Container(
-            margin: EdgeInsets.only(right: 12),
-            width: 43,
-            height: 43,
-            decoration: BoxDecoration(
-              color: Colors.yellowAccent,
-              shape: BoxShape.circle,
-            ),
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: BoxAnimation(),
           ),
         ],
       ),

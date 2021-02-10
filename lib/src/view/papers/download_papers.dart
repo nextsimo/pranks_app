@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prank/src/utils/device.dart';
 import 'package:prank/src/utils/functions.dart';
 
 import 'package:prank/src/widgets/app_bar/back_app_bar.dart';
@@ -6,12 +7,12 @@ import 'package:prank/src/widgets/more/saved_papers.dart';
 
 import 'package:prank/src/widgets/more/svg_icon.dart';
 
-class DownloadPapers extends StatefulWidget {
-  @override
-  _DownloadPapersState createState() => _DownloadPapersState();
-}
+class DownloadPapers extends StatelessWidget {
+  final String image;
+  final int index;
 
-class _DownloadPapersState extends State<DownloadPapers> {
+  const DownloadPapers({Key key, @required this.image, this.index})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     final List<IconsPapers> list = [
@@ -31,13 +32,16 @@ class _DownloadPapersState extends State<DownloadPapers> {
           ),
           Column(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(28),
-                child: Image.asset(
-                  "assets/img.webp",
-                  fit: BoxFit.cover,
-                  height: 587,
-                  width: 307,
+              Hero(
+                tag: "wallpapers$index",
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(28),
+                  child: Image.network(
+                    image,
+                    fit: BoxFit.cover,
+                    height: Device.height * 0.7,
+                    width: 307,
+                  ),
                 ),
               ),
               SizedBox(height: 10),

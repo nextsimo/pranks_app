@@ -18,6 +18,7 @@ class ProfileDetailView extends StatelessWidget {
           children: [
             BackAppBar(
               icone: "back",
+              function: () => Navigator.of(context).pop(),
             ),
             SizedBox(
               height: 74,

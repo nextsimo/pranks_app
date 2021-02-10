@@ -28,6 +28,7 @@ class ProfileView extends StatelessWidget {
             children: [
               BackAppBar(
                 icone: "back",
+                function: () => Navigator.of(context).pop(),
               ),
               buildProfilInfo(),
             ],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:prank/src/utils/functions.dart';
-import 'package:prank/src/view/chat/chat.dart';
 import 'package:prank/src/view/navigation/navigation_view.dart';
 import 'package:prank/src/widgets/app_bar/back_app_bar.dart';
 import 'package:prank/src/widgets/buttons/button_continue.dart';
@@ -28,24 +27,21 @@ class LockedView extends StatelessWidget {
         body(context),
         Align(
           alignment: Alignment.bottomCenter,
-          child: Expanded(
-            child: Container(
-              height: 190,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(40),
-                    topLeft: Radius.circular(40)),
-              ),
-              child: Column(children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 19, top: 18),
-                  child: Column(
-                    children: list.map((e) => buildText(e)).toList(),
-                  ),
-                ),
-              ]),
+          child: Container(
+            height: 190,
+            decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(40), topLeft: Radius.circular(40)),
             ),
+            child: Column(children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 19, top: 18),
+                child: Column(
+                  children: list.map((e) => buildText(e)).toList(),
+                ),
+              ),
+            ]),
           ),
         )
       ],
@@ -74,20 +70,20 @@ class LockedView extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 200),
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 50),
+          SafeArea(
             child: AdsContainer(),
+            bottom: false,
           ),
           BackAppBar(
               icone: "close",
               function: () => navigateTo(context, NavigationView())),
           SizedBox(
-            height: 12,
+            height: 5,
           ),
           SvgIcon(
             icon: "lock",
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 5),
           Text(title,
               style: TextStyle(
                   color: Colors.white,
@@ -101,21 +97,21 @@ class LockedView extends StatelessWidget {
             text2: "GIVE US FIVE STARS ",
           ),
           SizedBox(
-            height: 47,
+            height: 30,
           ),
           ButtonLocked(
             text1: "ADS VIDEO",
             text2: "WATCH VIDEO ADS",
           ),
           SizedBox(
-            height: 47,
+            height: 30,
           ),
           ButtonLocked(
             text1: "DONATE",
             text2: "GIVE US 1\$ PAYPAL",
           ),
           SizedBox(
-            height: 71,
+            height: 35,
           ),
           ButtonContinue(page: page),
         ],

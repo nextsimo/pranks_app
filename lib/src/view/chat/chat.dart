@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:prank/src/utils/device.dart';
 import 'package:prank/src/utils/functions.dart';
 import 'package:prank/src/utils/styles.dart';
 import 'package:prank/src/view/Call/time_to_call.dart';
 import 'package:prank/src/view/Call/time_to_call_video.dart';
-import 'package:prank/src/view/home/homePage.dart';
+import 'package:prank/src/view/animation/box_animation.dart';
 import 'package:prank/src/view/navigation/navigation_view.dart';
 import 'package:prank/src/widgets/inputs/keyboard_visibilty.dart';
 import 'package:prank/src/widgets/more/ads_container.dart';
@@ -17,115 +18,131 @@ class ChatView extends StatelessWidget {
     ChatMessage(
         messageContent: "Hey Kriss, I am doing fine dude. wbu?",
         messageType: "sender"),
-    ChatMessage(messageContent: "ehhhh, doing OK.", messageType: "receiver"),
-    ChatMessage(
-        messageContent: "Is there any thing wrong?", messageType: "sender"),
-    ChatMessage(messageContent: "ehhhh, doing OK.", messageType: "receiver"),
   ];
+
+  final ScrollController controller = ScrollController();
+
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Color(0xFF313036),
-      child: Stack(
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      controller.jumpTo(controller.position.maxScrollExtent);
+    });
+    return Scaffold(
+      backgroundColor: Color(0xFF313036),
+      body: Stack(
         alignment: Alignment.bottomCenter,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Padding(
-              padding: const EdgeInsets.only(top: 30),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                          onTap: () => navigateTo(context, NavigationView()),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: SvgIcon(icon: "back"),
-                          )),
-                      buildStackprofil(),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+          Align(
+            alignment: Alignment.topCenter,
+            child: Column(
+              children: [
+                Container(
+                  color: Color(0xFF313036),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 30),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text(
-                            "Lina Thomson",
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              InkWell(
+                                  onTap: () =>
+                                      navigateTo(context, NavigationView()),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10),
+                                    child: SvgIcon(icon: "back"),
+                                  )),
+                              buildStackprofil(),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Lina Thomson",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Online",
+                                    style: TextStyle(
+                                        fontSize: 13, color: Color(0xFFE6E6E6)),
+                                  ),
+                                ],
+                              ),
+                              BoxAnimation(),
+                              InkWell(
+                                onTap: () =>
+                                    navigateTo(context, TimeToCallVideo()),
+                                child: SvgIcon(icon: "awesome-video"),
+                              ),
+                              InkWell(
+                                onTap: () => navigateTo(context, TimeToCall()),
+                                child: SvgIcon(icon: "accept_call"),
+                              ),
+                            ],
                           ),
-                          Text(
-                            "Online",
-                            style: TextStyle(
-                                fontSize: 13, color: Color(0xFFE6E6E6)),
+                          Divider(
+                            color: Color(0xFFE6E6E6),
+                            thickness: 1,
                           ),
+                          Text("Today",
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.white)),
                         ],
-                      ),
-                      Container(
-                        width: 35,
-                        height: 35,
-                        decoration: BoxDecoration(
-                          color: Colors.yellowAccent,
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () => navigateTo(context, TimeToCallVideo()),
-                        child: SvgIcon(icon: "awesome-video"),
-                      ),
-                      InkWell(
-                        onTap: () => navigateTo(context, TimeToCall()),
-                        child: SvgIcon(icon: "accept_call"),
-                      ),
-                    ],
-                  ),
-                  Divider(
-                    color: Color(0xFFE6E6E6),
-                    thickness: 1,
-                  ),
-                  Text("Today",
-                      style: TextStyle(fontSize: 15, color: Colors.white)),
-                ],
-              ),
-            ),
-          ),
-          Center(
-            child: ListView.builder(
-              itemCount: messages.length,
-              shrinkWrap: true,
-              padding: EdgeInsets.only(top: 10, bottom: 10),
-              physics: NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) {
-                return Container(
-                  padding:
-                      EdgeInsets.only(left: 14, right: 14, top: 6, bottom: 10),
-                  child: Align(
-                    alignment: (messages[index].messageType == "receiver"
-                        ? Alignment.topLeft
-                        : Alignment.topRight),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: (messages[index].messageType == "receiver"
-                            ? Colors.white
-                            : Color(0xFFFFCE00)),
-                      ),
-                      padding: EdgeInsets.all(16),
-                      child: Text(
-                        messages[index].messageContent,
-                        style: TextStyle(fontSize: 15),
                       ),
                     ),
                   ),
-                );
-              },
+                ),
+                Expanded(
+                  child: Container(
+                    child: ListView.builder(
+                      controller: controller,
+                      itemCount: messages.length,
+                      padding: EdgeInsets.only(top: 10, bottom: 200),
+                      itemBuilder: (context, index) {
+                        return Container(
+                          padding: EdgeInsets.only(
+                              left: 14, right: 14, top: 6, bottom: 10),
+                          child: Align(
+                            alignment:
+                                (messages[index].messageType == "receiver"
+                                    ? Alignment.topLeft
+                                    : Alignment.topRight),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color:
+                                    (messages[index].messageType == "receiver"
+                                        ? Colors.white
+                                        : Color(0xFFFFCE00)),
+                              ),
+                              padding: EdgeInsets.all(16),
+                              child: Text(
+                                messages[index].messageContent,
+                                style: TextStyle(fontSize: 15),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+                Column(
+                  children: [
+                    buildRowSendMsg(context),
+                    Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: AdsContainer(),
+                    ),
+                  ],
+                ),
+              ],
             ),
-          ),
-          buildRowSendMsg(context),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: AdsContainer(),
           ),
         ],
       ),
@@ -133,39 +150,37 @@ class ChatView extends StatelessWidget {
   }
 
   Widget buildRowSendMsg(BuildContext context) {
-    return KeyboardVisibilityBuilder(
-      builder: (_, __, visible) {
-        return Padding(
-          padding: EdgeInsets.only(bottom: 90),
-          child: Row(
-            children: [
-              SizedBox(width: 50),
-              Expanded(
-                child: buildTextField(),
-              ),
-              SizedBox(width: 10),
-              InkWell(
-                onTap: () {
-                  //TODO
-                },
-                child: Container(
-                  height: 63,
-                  width: 64,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(23),
-                    color: Color(0xFFFFCE00),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: SvgIcon(icon: "send"),
-                  ),
+    return Container(
+      child: Padding(
+        padding: EdgeInsets.only(bottom: 10),
+        child: Row(
+          children: [
+            SizedBox(width: 50),
+            Expanded(
+              child: buildTextField(),
+            ),
+            SizedBox(width: 10),
+            InkWell(
+              onTap: () {
+                //TODO
+              },
+              child: Container(
+                height: 63,
+                width: 64,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(23),
+                  color: Color(0xFFFFCE00),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: SvgIcon(icon: "send"),
                 ),
               ),
-              SizedBox(width: 10),
-            ],
-          ),
-        );
-      },
+            ),
+            SizedBox(width: 10),
+          ],
+        ),
+      ),
     );
   }
 
@@ -176,6 +191,9 @@ class ChatView extends StatelessWidget {
         expands: true,
         maxLength: null,
         maxLines: null,
+        onTap: () {
+          controller.jumpTo(controller.position.maxScrollExtent);
+        },
         decoration: InputDecoration(
           hintText: "Text Message",
           hintStyle: TextStyle(

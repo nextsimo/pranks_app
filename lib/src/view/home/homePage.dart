@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prank/src/utils/device.dart';
 import 'package:prank/src/utils/functions.dart';
+import 'package:prank/src/view/animation/box_animation.dart';
 import 'package:prank/src/view/home/custom_slider.dart';
 import 'package:prank/src/view/papers/recently_wallpapers.dart';
 import 'package:prank/src/view/papers/wallpapers_popular.dart';
@@ -21,11 +22,14 @@ class HommePage extends StatelessWidget {
               padding: EdgeInsets.only(bottom: 165),
               child: Column(
                 children: [
-                  AdsContainer(),
+                  SafeArea(
+                    bottom: false,
+                    child: AdsContainer(),
+                  ),
                   buildAppBar(context),
                   SizedBox(height: 25),
                   buildContainer(
-                      'Recently wallpapers', context, PopularesWallpapes()),
+                      'Recently wallpapers', context, RecentlyWallpapars()),
                   SizedBox(height: 18),
                   CarouselWithIndicatorDemo(),
                   SizedBox(height: 20),
@@ -34,7 +38,7 @@ class HommePage extends StatelessWidget {
                   buildContainer(
                     "Popular Wallpapers",
                     context,
-                    RecentlyWallpapars(),
+                    PopularesWallpapes(),
                   ),
                   SizedBox(height: 18),
                   Container(
@@ -230,14 +234,7 @@ class HommePage extends StatelessWidget {
             ),
           ),
           Expanded(child: SizedBox()),
-          Container(
-            width: 43,
-            height: 43,
-            decoration: BoxDecoration(
-              color: Colors.yellowAccent,
-              shape: BoxShape.circle,
-            ),
-          ),
+          BoxAnimation(),
 /* */
           SizedBox(width: 10),
           InkWell(
