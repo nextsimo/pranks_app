@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prank/src/utils/functions.dart';
+
 import 'package:prank/src/widgets/more/svg_icon.dart';
 
 class AppBarWiithText extends StatelessWidget {
@@ -9,7 +10,7 @@ class AppBarWiithText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 50, left: 11),
+      padding: const EdgeInsets.only(top: 40, left: 10),
       child: Row(
         children: [
           InkWell(
@@ -23,9 +24,7 @@ class AppBarWiithText extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-            width: 25,
-          ),
+          SizedBox(width: 5),
           Text(
             text,
             style: TextStyle(

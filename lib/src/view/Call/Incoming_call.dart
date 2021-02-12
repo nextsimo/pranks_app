@@ -1,11 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:prank/src/utils/device.dart';
+import 'package:prank/src/utils/functions.dart';
+import 'package:prank/src/view/Call/call.dart';
+import 'package:prank/src/view/chat/chat.dart';
+import 'package:prank/src/view/navigation/navigation_view.dart';
 import 'package:prank/src/widgets/more/container_white.dart';
 import 'package:prank/src/widgets/more/svg_icon.dart';
 
 class IncommingCall extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final List<ButtonCallfunction> list = [
+      ButtonCallfunction(
+          color: Color(0xFFDE3955),
+          icon: "decline_call",
+          function: () => navigateTo(context, NavigationView())),
+      ButtonCallfunction(
+          color: Color(0xFF469780),
+          icon: "accept_call",
+          function: () => navigateTo(context, Call())),
+      ButtonCallfunction(
+          color: Color(0xFFF3AB7C),
+          icon: "message",
+          function: () => navigateTo(context, ChatView())),
+    ];
     Device.init(context);
     return Material(
       color: Color(0xFF313036),
@@ -43,81 +61,38 @@ class IncommingCall extends StatelessWidget {
             SizedBox(height: 10),
             Container(
               width: Device.width,
-              height: Device.height * 0.18,
+              height: Device.height * 0.17,
               color: Colors.lime,
               child: Center(
                 child: Text('ADS'),
               ),
             ),
-            buildPaddingCall()
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: list.map((e) => buildPaddingCall(e)).toList(),
+            )
           ],
         ),
       ),
     );
   }
 
-  Padding buildPaddingCall() {
-    return Padding(
-      padding: const EdgeInsets.all(30),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          InkWell(
-            onTap: () {
-              //TODO
-            },
-            child: Container(
-              height: 83,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Color(0xFFDE3955),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(30),
-                child: SvgIcon(
-                  icon: "decline_call",
-                ),
-              ),
-            ),
+  Widget buildPaddingCall(ButtonCallfunction e) {
+    return InkWell(
+      onTap: e.function,
+      child: Container(
+        width: Device.width * 0.22,
+        height: 83,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20), color: e.color),
+        child: Padding(
+          padding: const EdgeInsets.all(30),
+          child: SvgIcon(
+            icon: e.icon,
+            color: Colors.white,
           ),
-          InkWell(
-            onTap: () {
-              //TODO
-            },
-            child: Container(
-              height: 83,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Color(0xFF469780),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(30),
-                child: SvgIcon(
-                  icon: "accept_call",
-                ),
-              ),
-            ),
-          ),
-          InkWell(
-            onTap: () {
-              //TODO
-            },
-            child: Container(
-              height: 83,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Color(0xFFF3AB7C),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(30),
-                child: SvgIcon(
-                  icon: "message",
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -126,7 +101,7 @@ class IncommingCall extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Opacity(
-        opacity: 0.6,
+        opacity: 0.8,
         child: Container(
           height: 270,
           decoration: BoxDecoration(
@@ -181,4 +156,12 @@ class IncommingCall extends StatelessWidget {
       ),
     );
   }
+}
+
+class ButtonCallfunction {
+  final String icon;
+  final Color color;
+  final Function function;
+
+  ButtonCallfunction({this.function, this.icon, this.color});
 }

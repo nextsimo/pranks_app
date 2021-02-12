@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prank/src/utils/functions.dart';
 import 'package:prank/src/view/Call/type_of_call.dart';
-import 'package:prank/src/view/Call/type_of_call_video.dart';
+
 import 'package:prank/src/view/navigation/navigation_view.dart';
 import 'package:prank/src/widgets/app_bar/app_bar_emoji.dart';
 import 'package:prank/src/widgets/buttons/button_call.dart';

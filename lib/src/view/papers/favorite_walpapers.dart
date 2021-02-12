@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:prank/src/utils/functions.dart';
+
+import 'package:prank/src/view/navigation/navigation_view.dart';
 import 'package:prank/src/view/papers/download_papers.dart';
 
 import 'package:prank/src/widgets/app_bar/app_bar_emoji.dart';
@@ -55,6 +57,7 @@ class FavoriteWalPapers extends StatelessWidget {
           ),
           AppBarWithEmoji(
             text: "Favorite wallpapers",
+            page: () => navigateTo(context, NavigationView()),
           ),
         ],
       ),

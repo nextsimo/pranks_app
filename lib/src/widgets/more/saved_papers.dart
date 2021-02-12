@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prank/src/utils/device.dart';
+
 import 'package:prank/src/utils/functions.dart';
 import 'package:prank/src/widgets/more/svg_icon.dart';
 

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:prank/src/utils/device.dart';
+
 import 'package:prank/src/utils/functions.dart';
 import 'package:prank/src/utils/styles.dart';
 import 'package:prank/src/view/Call/time_to_call.dart';
 import 'package:prank/src/view/Call/time_to_call_video.dart';
 import 'package:prank/src/view/animation/box_animation.dart';
 import 'package:prank/src/view/navigation/navigation_view.dart';
-import 'package:prank/src/widgets/inputs/keyboard_visibilty.dart';
+
 import 'package:prank/src/widgets/more/ads_container.dart';
 
 import 'package:prank/src/widgets/more/svg_icon.dart';

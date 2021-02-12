@@ -1,13 +1,17 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:prank/src/utils/device.dart';
+
 import 'package:prank/src/widgets/more/svg_icon.dart';
 
 class ButtonStatusCall extends StatefulWidget {
   final String text1;
   final String text2;
+  final Color color;
 
-  ButtonStatusCall({Key key, this.text1, this.text2}) : super(key: key);
+  ButtonStatusCall(
+      {Key key, this.text1, this.text2, this.color = const Color(0xffFFCE00)})
+      : super(key: key);
 
   @override
   _ButtonStatusCallState createState() => _ButtonStatusCallState();
@@ -21,6 +25,9 @@ class _ButtonStatusCallState extends State<ButtonStatusCall> {
     return InkWell(
       onTap: () {
         setState(() {
+          setState(() {
+            selected = !selected;
+          });
           buildshowDialoge(widget.text1, widget.text2, context);
         });
       },
@@ -97,6 +104,7 @@ class _ButtonStatusCallState extends State<ButtonStatusCall> {
             ),
             SvgIcon(
               icon: "locked",
+              color: widget.color,
             ),
           ],
         ),
@@ -108,7 +116,7 @@ class _ButtonStatusCallState extends State<ButtonStatusCall> {
 void buildshowDialoge(String emojie, String title, BuildContext context) {
   showDialog(
       builder: (_) => new AlertDialog(
-            backgroundColor: Color(0xFFFFCE00),
+            backgroundColor: Color(0xffFFCE00),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             title: Column(
@@ -120,22 +128,22 @@ void buildshowDialoge(String emojie, String title, BuildContext context) {
                     style: TextStyle(fontSize: 35, fontWeight: FontWeight.w500),
                   ),
                 ),
+                SizedBox(height: 10),
                 Center(
                   child: Text(
                     "UNLOCKED " + title,
                     style: TextStyle(
-                      fontSize: 21,
+                      fontSize: 17,
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF313036),
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
+                Center(
                   child: Text(
                     "Watch video ad to unlocked " + title.toLowerCase() + "!",
                     style: TextStyle(
-                      fontSize: 11,
+                      fontSize: 10,
                       color: Color(0xFF313036),
                     ),
                   ),
@@ -146,8 +154,8 @@ void buildshowDialoge(String emojie, String title, BuildContext context) {
               FlatButton(
                 child: Center(
                   child: Container(
-                    width: 217,
-                    height: 38,
+                    width: Device.width * 0.6,
+                    height: 40,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(11),
                       color: Color(0xFF313036),
@@ -165,11 +173,7 @@ void buildshowDialoge(String emojie, String title, BuildContext context) {
                   //TODO
                 },
               ),
-              SizedBox(
-                height: 11,
-              ),
               FlatButton(
-                padding: EdgeInsets.only(left: 15),
                 child: Center(
                   child: Text(
                     'No,Thank you',
