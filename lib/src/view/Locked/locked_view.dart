@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:prank/src/utils/functions.dart';
 import 'package:prank/src/view/navigation/navigation_view.dart';
 import 'package:prank/src/widgets/app_bar/back_app_bar.dart';
-import 'package:prank/src/widgets/buttons/button_continue.dart';
 import 'package:prank/src/widgets/buttons/button_locked.dart';
+import 'package:prank/src/widgets/buttons/next_call.dart';
 import 'package:prank/src/widgets/more/ads_container.dart';
 import 'package:prank/src/widgets/more/svg_icon.dart';
 
@@ -67,16 +67,27 @@ class LockedView extends StatelessWidget {
 
   Widget body(BuildContext context) {
     return SingleChildScrollView(
-      padding: EdgeInsets.only(bottom: 200),
+      padding: EdgeInsets.only(bottom: 300),
       child: Column(
         children: [
           SafeArea(
             child: AdsContainer(),
             bottom: false,
           ),
-          BackAppBar(
-              icone: "close",
-              function: () => navigateTo(context, NavigationView())),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              BackAppBar(
+                  icone: "close",
+                  function: () => navigateTo(context, NavigationView())),
+              Padding(
+                padding: const EdgeInsets.only(top: 50),
+                child: Next(
+                  function: () => navigateTo(context, page),
+                ),
+              ),
+            ],
+          ),
           SizedBox(
             height: 5,
           ),
@@ -110,10 +121,6 @@ class LockedView extends StatelessWidget {
             text1: "DONATE",
             text2: "GIVE US 1\$ PAYPAL",
           ),
-          SizedBox(
-            height: 35,
-          ),
-          ButtonContinue(page: page),
         ],
       ),
     );
