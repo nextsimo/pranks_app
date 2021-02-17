@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prank/src/utils/functions.dart';
 import 'package:prank/src/view/Call/Incoming_call.dart';
+import 'package:prank/src/view/Call/call.dart';
 
 import 'package:prank/src/view/animation/box_animation.dart';
 
@@ -31,7 +32,12 @@ class TypeOfCall extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 50),
                       child: Next(
-                        function: () => navigateTo(context, IncommingCall()),
+                        function: () => navigateTo(
+                            context,
+                            IncommingCall(
+                              title: "Incoming call ",
+                              page: Call(),
+                            )),
                       ),
                     ),
                   ],

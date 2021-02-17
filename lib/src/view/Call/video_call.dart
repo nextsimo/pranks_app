@@ -7,6 +7,8 @@ import 'package:prank/src/view/Call/call.dart';
 
 import 'package:prank/src/view/camera/camera_view.dart';
 import 'package:prank/src/view/chat/chat.dart';
+import 'package:prank/src/view/home/homePage.dart';
+import 'package:prank/src/view/navigation/navigation_view.dart';
 import 'package:prank/src/widgets/more/ads_container.dart';
 import 'package:prank/src/widgets/more/svg_icon.dart';
 import 'package:video_player/video_player.dart';
@@ -36,7 +38,7 @@ class VideoCall extends StatelessWidget {
           page: () {
             locator<VideoPlayerService>().videoPlayerController.pause();
             locator<VideoPlayerService>().videoPlayerController.initialize();
-            back(context);
+            navigateTo(context, NavigationView());
           }),
     ];
     final VideoPlayerService videoPlayerService = locator<VideoPlayerService>();

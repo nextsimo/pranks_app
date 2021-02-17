@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prank/src/utils/functions.dart';
+import 'package:prank/src/view/Call/Incoming_call.dart';
 import 'package:prank/src/view/Call/video_call.dart';
 
 import 'package:prank/src/view/animation/box_animation.dart';
@@ -31,7 +32,12 @@ class TypeOfCallVideo extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 50),
                       child: Next(
-                        function: () => navigateTo(context, VideoCall()),
+                        function: () => navigateTo(
+                            context,
+                            IncommingCall(
+                              title: "Incoming Video call ",
+                              page: VideoCall(),
+                            )),
                       ),
                     ),
                   ],

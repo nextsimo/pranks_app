@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:prank/src/utils/device.dart';
 import 'package:prank/src/utils/functions.dart';
-import 'package:prank/src/view/Call/call.dart';
 import 'package:prank/src/view/chat/chat.dart';
 import 'package:prank/src/view/navigation/navigation_view.dart';
 import 'package:prank/src/widgets/more/container_white.dart';
 import 'package:prank/src/widgets/more/svg_icon.dart';
 
 class IncommingCall extends StatelessWidget {
+  final Widget page;
+  final String title;
+
+  const IncommingCall({Key key, this.page, this.title}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final List<ButtonCallfunction> list = [
@@ -18,7 +21,7 @@ class IncommingCall extends StatelessWidget {
       ButtonCallfunction(
           color: Color(0xFF469780),
           icon: "accept_call",
-          function: () => navigateTo(context, Call())),
+          function: () => navigateTo(context, page)),
       ButtonCallfunction(
           color: Color(0xFFF3AB7C),
           icon: "message",
@@ -35,7 +38,7 @@ class IncommingCall extends StatelessWidget {
               child: WhiteContainer(),
             ),
             Text(
-              "Incoming call ",
+              title,
               style: TextStyle(fontSize: 21, color: Colors.white),
             ),
             buildPadding(),
