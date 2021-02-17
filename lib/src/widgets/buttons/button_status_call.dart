@@ -115,79 +115,99 @@ class _ButtonStatusCallState extends State<ButtonStatusCall> {
 
 void buildshowDialoge(String emojie, String title, BuildContext context) {
   showDialog(
-      builder: (_) => new AlertDialog(
-            backgroundColor: Color(0xffFFCE00),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            title: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: new Text(
-                    emojie,
-                    style: TextStyle(fontSize: 35, fontWeight: FontWeight.w500),
-                  ),
-                ),
-                SizedBox(height: 10),
-                Center(
-                  child: Text(
-                    "UNLOCKED " + title,
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF313036),
-                    ),
-                  ),
-                ),
-                Center(
-                  child: Text(
-                    "Watch video ad to unlocked " + title.toLowerCase() + "!",
-                    style: TextStyle(
-                      fontSize: 10,
-                      color: Color(0xFF313036),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            actions: <Widget>[
-              FlatButton(
-                child: Center(
-                  child: Container(
-                    width: Device.width * 0.6,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(11),
-                      color: Color(0xFF313036),
-                    ),
-                    child: Center(
-                      child: Text("WATCH VIDEO",
-                          style: TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFFFCE00))),
-                    ),
-                  ),
-                ),
-                onPressed: () {
-                  //TODO
-                },
+      context: context,
+      builder: (_) {
+        return Material(
+          color: Colors.transparent,
+          child: Center(
+            child: Container(
+              padding: EdgeInsets.all(20),
+              width: Device.width * 0.8,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(22),
+                color: Colors.yellow,
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.yellow.withOpacity(0.5),
+                      blurRadius: 50,
+                      spreadRadius: 0),
+                ],
+                gradient: RadialGradient(
+                    colors: [Colors.yellow, Colors.yellow[900]], radius: 1.4),
               ),
-              FlatButton(
-                child: Center(
-                  child: Text(
-                    'No,Thank you',
-                    style: TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF313036)),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(
+                    child: new Text(
+                      emojie,
+                      style:
+                          TextStyle(fontSize: 35, fontWeight: FontWeight.w500),
+                    ),
                   ),
-                ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              )
-            ],
+                  SizedBox(height: 10),
+                  Center(
+                    child: Text(
+                      "UNLOCKED " + title,
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF313036),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  Center(
+                    child: Text(
+                      "Watch video ad to unlocked " + title.toLowerCase() + "!",
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: Color(0xFF313036),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  FlatButton(
+                    child: Center(
+                      child: Container(
+                        width: Device.width * 0.6,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(11),
+                          color: Color(0xFF313036),
+                        ),
+                        child: Center(
+                          child: Text("WATCH VIDEO",
+                              style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFFFFCE00))),
+                        ),
+                      ),
+                    ),
+                    onPressed: () {
+                      //TODO
+                    },
+                  ),
+                  FlatButton(
+                    child: Center(
+                      child: Text(
+                        'No,Thank you',
+                        style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF313036)),
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  )
+                ],
+              ),
+            ),
           ),
-      context: context);
+        );
+      });
 }
