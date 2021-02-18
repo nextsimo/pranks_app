@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prank/src/utils/device.dart';
 import 'package:prank/src/utils/functions.dart';
+import 'package:prank/src/view/animation/animated_call.dart';
 import 'package:prank/src/view/chat/chat.dart';
 import 'package:prank/src/view/navigation/navigation_view.dart';
 import 'package:prank/src/widgets/more/container_white.dart';
@@ -41,7 +42,7 @@ class IncommingCall extends StatelessWidget {
               title,
               style: TextStyle(fontSize: 21, color: Colors.white),
             ),
-            buildPadding(),
+            AnimatedCall(),
             Column(
               children: [
                 Text(
