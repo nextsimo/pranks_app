@@ -37,7 +37,7 @@ class DownloadPapers extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(28),
                   child: Image.network(
-                    image,
+                    getImagePath(image),
                     fit: BoxFit.cover,
                     height: Device.height * 0.7,
                     width: 307,

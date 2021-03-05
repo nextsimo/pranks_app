@@ -17,3 +17,7 @@ customShwoBottomSheet(Widget widget, BuildContext context) {
     },
   );
 }
+
+String getImagePath(String name) {
+  return "https://firebasestorage.googleapis.com/v0/b/wallpaper-prank.appspot.com/o/papers%2F$name?alt=media";
+}

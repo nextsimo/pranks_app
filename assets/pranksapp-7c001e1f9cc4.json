@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "pranksapp",
+  "private_key_id": "7c001e1f9cc43f86362521a8efaf4c969ed350f2",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDRHZEyfyxx0bci\nKfS/nGqtmOgHfO5UDR6bNNOL7DGncm+iTeDTwaXiH/nrHt7/2eJewXi9zwCsD/sp\nqLVHgjrUEfhBv1/3nTeNz26u93fkaQFSXqVk8mXdOVQrzqaxJB3jpHhhwcrJbyHv\nYcIQ3isfLHFCPvAylMPOd5mA33GZMaaYgivBJ0A5nPEEaGaAlX4ZizlTKrTOuOOQ\nyCWJCYygqZCDL614htVpGgNZvleMn7gs+cnWB4ot09dDd/40ztvX6ZR1FNyGb3KL\noMo5WeZ2wdp3GQAQiIkXCwPkfEtqe9Vkyl7LB5Znf2APcaTgLW/aDE6/Sld9v/t/\n0HH7+tNVAgMBAAECggEAB7HSU2zZilCgr/miP2C2ji+3rfrbXC1laGmftSDaTOKJ\nmAvMj44rF/B8RjoLE5gFW947nqRczngCEmzaSsjQeFg27dhoZBidYDL3TCnf+AAj\nI9BGvrmqpOLEpZ4DhTYigWteYJ58Y0AbHA9ZUDyUkp+UhU8CkKHnuJOvCs5uBCh+\nBDJLoH2CWMxA9NHyTeNSe8/NKoT79bDSPeskTalXj2gBpopyKvFvpLeogwbQWBVG\nHhUSgctJy4Rrel2Eu11DqXzfRBABuiwIplb1OQfCeY4KX4NYeoUa3lzrKACtl868\nqTZcKqEfbPspkX2JNPwvpYJhmddDP1Vha9UNPc7GuwKBgQDsngJN28U4TVPVjjZ1\na7gO/7wGBWaq73AvH2ZdiQ1WGB9OgsV9nmPrMsSiev9t6vbJN6iyHgF9rI4O9Q+n\nFXjd5GOX/7qPUKh+eFsvWYbpmSE+OAZ/ABrEAGyAY1FpgxwB3vukh1C1cUuljfbk\nQulc4nubnBcoiiK1mSp0ck+RawKBgQDiPtUGNKsjVQ2GkTj874l6BVf8wfCS9OkQ\nTBRr7cOASWwMwiSUBiC6vko1HQai1cVcy0IP0wJuFbY0SrFCsw4ex8hcbqLG2SBp\nEyeAp4/yzOfnMC/blAC0UZzQKLPQ64hUMQnDqR4cjvQ9pdPZ4LAF1faZh6POwyO/\niRKwN3KePwKBgQC73ZCyxKVH2I2RZ0Jx5D7VGdLtbOhhG46Uu3eJGEHQc4KX0ViA\nLnviyAI7hzC60u1yQZDdKtnAMHryATyWSoQWmTlB+7biBwZgs6qiY5Csc/pi7hSq\nTSjzKer73N9MyN451hMyRIWeKgAHyDmYbk/egavmlv4EH/kC+kMtBX2LVQKBgBNL\nUnVuBm5D8ZxZRCfl8a5zSDao/3A47KtUIaW2qCaHnGxWHjJ1d1MVqVRwPkGiw2sP\ndnnM//cNaPV6rTVH+dtMJF0lnkIhAC+Vz5ecMp19NgW0SVCLhafbEel6nyMhAwZT\nDEcgZA4BbvjW7IM3Myu8PISJWcHnSGQsN2jJwb+XAoGACu44mCym+f3T2PXFIYkl\nxXT0KH7Euee3ry0nuvvvR16C/GDmuppQ+YUCS/Z+V40anz2gJ0dM5phw/Ba/dhwm\nqtYQoYa00gCfQ6QBPRA2inOgLdwmkp0wLO2lqoDwDOPWAb5F71Y20wWXYvdrobH9\nZwQdakkzxontI4Wm1OzDoO8=\n-----END PRIVATE KEY-----\n",
+  "client_email": "prankapp-dialogflow@pranksapp.iam.gserviceaccount.com",
+  "client_id": "102580387981023585523",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/prankapp-dialogflow%40pranksapp.iam.gserviceaccount.com"
+}

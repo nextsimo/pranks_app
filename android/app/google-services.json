@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "747852183864",
+    "project_id": "wallpaper-prank",
+    "storage_bucket": "wallpaper-prank.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747852183864:android:8de7d1f9277053601c69cd",
+        "android_client_info": {
+          "package_name": "com.mevos19.prank"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "747852183864-k40340lnfsu7jb456vsp31966pum32br.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3p3SAray8JWzVZilSXqb2fJrid9G78fc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "747852183864-k40340lnfsu7jb456vsp31966pum32br.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
