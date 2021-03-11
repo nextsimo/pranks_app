@@ -36,7 +36,9 @@ class DownloadPapers extends StatelessWidget {
         child: Column(children: [
           BackAppBar(
             icone: "back",
-            function: () => back(context),
+            function: () {
+              buildIntertitialAtIndex(0);
+            },
           ),
           Column(
             children: [

@@ -28,34 +28,14 @@ class AdsService with ChangeNotifier {
     fetchInterstials();
   }
 
-  loadInterstial(int index) {
+/*   loadInterstial(int index) {
     try {
       AdsModel ad1 = interstials.first;
       AdsModel ad2 = interstials.elementAt(1);
       AdsModel ad3 = interstials.elementAt(2);
       switch (index) {
         case 1:
-          switch (ad1.company) {
-            case 'google':
-              if (Platform.isAndroid)
-                admob.showIterstitial(ad1.androidToken);
-              else if (Platform.isIOS) admob.showIterstitial(ad1.iosToken);
-              break;
-            case 'facebook':
-              if (Platform.isAndroid)
-                FacebookInterstitialAd.loadInterstitialAd(
-                  placementId: ad1.androidToken,
-                );
-              else if (Platform.isIOS) admob.showIterstitial(ad1.iosToken);
 
-              FacebookInterstitialAd.loadInterstitialAd(
-                placementId: ad1.androidToken,
-              );
-              break;
-            case 'unity':
-
-            default:
-          }
           break;
         case 2:
           break;
@@ -65,7 +45,7 @@ class AdsService with ChangeNotifier {
     } catch (e) {
       log(e.toString());
     }
-  }
+  } */
 
   Future<void> fetchInterstials() async {
     QuerySnapshot query = await FirebaseFirestore.instance
