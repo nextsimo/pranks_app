@@ -8,11 +8,11 @@ import 'package:prank/src/view/base/base_view_model.dart';
 final locator = GetIt.instance;
 
 void setup() {
+  locator.registerSingleton<AdsService>(AdsService());
+  locator.registerSingleton<BaseViewModel>(BaseViewModel());
   locator.registerSingleton<VideoPlayerService>(VideoPlayerService());
   locator.registerSingleton<CameraService>(CameraService());
   locator.registerSingleton<WallpapersService>(WallpapersService());
-  locator.registerSingleton<AdsService>(AdsService());
-  locator.registerSingleton<BaseViewModel>(BaseViewModel());
 }
 
 WallpapersService papersService = locator<WallpapersService>();

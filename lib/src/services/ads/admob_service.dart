@@ -4,6 +4,7 @@ class AdmobService {
   AdWithView _banner;
   InterstitialAd _interstitial;
   RewardedAd _rewarded;
+  AdWidget adWidget;
 
   void _inititRewarded(String rewardedId) {
     _rewarded = RewardedAd(
@@ -17,7 +18,7 @@ class AdmobService {
 
   void _initInterstitial(String interstitialId) {
     _interstitial = InterstitialAd(
-      adUnitId: '<ad unit id>',
+      adUnitId: interstitialId,
       request: AdRequest(),
       listener: AdListener(),
     );

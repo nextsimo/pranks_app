@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prank/src/services/ads/ads_service.dart';
 import 'package:prank/src/services/wallpapers_service.dart';
 import 'package:prank/src/utils/locator.dart';
 import 'package:prank/src/view/base/base_view.dart';
@@ -10,6 +11,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<WallpapersService>.value(value: papersService),
+        ChangeNotifierProvider<AdsService>.value(value: adsService),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

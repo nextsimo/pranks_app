@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:prank/src/utils/device.dart';
 import 'package:prank/src/utils/functions.dart';
 import 'package:prank/src/utils/locator.dart';
+import 'package:prank/src/view/base/base_view_model.dart';
+import 'package:prank/src/view/login/login_view.dart';
 import 'package:prank/src/view/profile/profile_detail_view.dart';
 import 'package:prank/src/widgets/app_bar/back_app_bar.dart';
 import 'package:prank/src/widgets/more/avatar_profil.dart';
@@ -42,7 +44,7 @@ class ProfileView extends StatelessWidget {
               SizedBox(
                 height: 65,
               ),
-              buildLogOutButton(),
+              buildLogOutButton(context),
             ],
           )
         ],
@@ -77,11 +79,13 @@ class ProfileView extends StatelessWidget {
     );
   }
 
-  Widget buildLogOutButton() {
+  Widget buildLogOutButton(BuildContext context) {
     return InkWell(
       onTap: () {
-        //TODO
-        //Add Log Out
+        BaseViewModel model = locator<BaseViewModel>();
+        model.prefs.clear();
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (_) => LoginView()), (route) => false);
       },
       child: Column(
         children: [

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:prank/src/models/wallpapers_model.dart';
+import 'package:prank/src/services/ads/ads_service.dart';
 import 'package:prank/src/services/wallpapers_service.dart';
 import 'package:prank/src/utils/device.dart';
 import 'package:prank/src/utils/functions.dart';
@@ -10,7 +11,6 @@ import 'package:prank/src/view/animation/box_animation.dart';
 import 'package:prank/src/view/home/custom_slider.dart';
 import 'package:prank/src/view/papers/wallpapers_popular.dart';
 import 'package:prank/src/view/profile/profile_view.dart';
-import 'package:prank/src/widgets/more/ads_container.dart';
 
 import 'package:prank/src/widgets/more/svg_icon.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +24,7 @@ class HommePage extends StatelessWidget {
         children: [
           SizedBox(
             child: SingleChildScrollView(
-              padding: EdgeInsets.only(bottom: 250, top: 80),
+              padding: EdgeInsets.only(bottom: 250, top: 60),
               child: Column(
                 children: [
                   buildAppBar(context),
@@ -54,15 +54,23 @@ class HommePage extends StatelessWidget {
               ),
             ),
           ),
-          BannerAdsView(
-            adsModel: adsService.banners.elementAt(0),
-          ),
+          Consumer<AdsService>(builder: (_, adsSerivce, __) {
+            if (adsSerivce.banners.isEmpty) return SizedBox();
+            return BannerAdsView(
+              adsModel: adsService.banners.first,
+            );
+          }),
           Align(
             alignment: Alignment.bottomCenter,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                AdsContainer(),
+                Consumer<AdsService>(builder: (_, adsSerivce, __) {
+                  if (adsSerivce.banners.isEmpty) return SizedBox();
+                  return BannerAdsView(
+                    adsModel: adsService.banners.last,
+                  );
+                }),
                 SizedBox(height: 15),
                 Container(
                   height: 172,

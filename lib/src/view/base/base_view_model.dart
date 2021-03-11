@@ -1,22 +1,25 @@
+import 'package:flutter/material.dart';
 import 'package:prank/src/utils/locator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class BaseViewModel {
+class BaseViewModel with ChangeNotifier {
   SharedPreferences prefs;
+  bool _isAuth;
 
-  BaseViewModel() {
-    init();
+  bool get isAuth => _isAuth;
+
+  set isAuth(bool isAuth) {
+    _isAuth = isAuth;
+    notifyListeners();
   }
-  void init() async {
+
+  Future<void> checkAuth() async {
     prefs = await SharedPreferences.getInstance();
-  }
-
-  bool checkAuth() {
     if (prefs.containsKey('phone_email')) {
       papersService.emailPhone = prefs.getString('phone_email');
       papersService.username = prefs.getString('username_name');
-      return true;
+      isAuth = true;
     }
-    return false;
+    isAuth = false;
   }
 }
