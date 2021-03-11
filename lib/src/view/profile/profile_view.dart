@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prank/src/utils/device.dart';
 import 'package:prank/src/utils/functions.dart';
+import 'package:prank/src/utils/locator.dart';
 import 'package:prank/src/view/profile/profile_detail_view.dart';
 import 'package:prank/src/widgets/app_bar/back_app_bar.dart';
 import 'package:prank/src/widgets/more/avatar_profil.dart';
@@ -122,14 +123,14 @@ class ProfileView extends StatelessWidget {
           height: 7,
         ),
         Text(
-          "Merry Smith",
+          papersService.username,
           style: TextStyle(color: Colors.white, fontSize: 18),
         ),
         SizedBox(
           height: 8,
         ),
         Text(
-          "+512 193006894",
+          papersService.emailPhone,
           style: TextStyle(
               color: Color(0xffC6C6C6),
               fontSize: 10,

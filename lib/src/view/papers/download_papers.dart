@@ -1,11 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:prank/src/services/wallpapers_service.dart';
 import 'package:prank/src/utils/device.dart';
 import 'package:prank/src/utils/functions.dart';
+import 'package:prank/src/utils/locator.dart';
 
 import 'package:prank/src/widgets/app_bar/back_app_bar.dart';
 import 'package:prank/src/widgets/more/saved_papers.dart';
-
 import 'package:prank/src/widgets/more/svg_icon.dart';
+import 'package:provider/provider.dart';
 
 class DownloadPapers extends StatelessWidget {
   final String image;
@@ -15,10 +18,15 @@ class DownloadPapers extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
+    context.watch<WallpapersService>();
+    bool inFavorite = papersService.favorites.contains(image);
+
     final List<IconsPapers> list = [
       IconsPapers(icon: "share", widget: () {}),
       IconsPapers(icon: "download", widget: () {}),
-      IconsPapers(icon: "favorite-border", widget: () {}),
+      IconsPapers(
+          icon: inFavorite ? 'favorite_ic' : "favorite-border",
+          widget: () => papersService.addToFavorite(image)),
       IconsPapers(icon: "Ellipse", widget: () => show(context)),
     ];
     return Scaffold(
@@ -36,8 +44,8 @@ class DownloadPapers extends StatelessWidget {
                 tag: "wallpapers$index",
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(28),
-                  child: Image.network(
-                    getImagePath(image),
+                  child: CachedNetworkImage(
+                    imageUrl: getImagePath(image),
                     fit: BoxFit.cover,
                     height: Device.height * 0.7,
                     width: 307,
@@ -62,6 +70,7 @@ class DownloadPapers extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: SvgIcon(
           icon: e.icon,
+          color: Colors.white,
         ),
       ),
     );

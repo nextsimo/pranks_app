@@ -3,13 +3,15 @@ import 'package:prank/src/utils/styles.dart';
 
 class SimpleInput extends StatelessWidget {
   final String hint;
+  final TextEditingController controller;
 
-  const SimpleInput({Key key, this.hint}) : super(key: key);
+  const SimpleInput({Key key, this.hint, this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      child: TextField(
+      child: TextFormField(
+        controller: controller,
         decoration: InputDecoration(
           hintText: hint,
           hintStyle: TextStyle(

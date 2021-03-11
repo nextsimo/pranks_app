@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:prank/src/models/wallpapers_model.dart';
 import 'package:prank/src/services/wallpapers_service.dart';
 import 'package:prank/src/utils/device.dart';
 import 'package:prank/src/utils/functions.dart';
+import 'package:prank/src/utils/locator.dart';
+import 'package:prank/src/view/ads/banner_ads_view.dart';
 import 'package:prank/src/view/animation/box_animation.dart';
 import 'package:prank/src/view/home/custom_slider.dart';
-import 'package:prank/src/view/papers/recently_wallpapers.dart';
 import 'package:prank/src/view/papers/wallpapers_popular.dart';
 import 'package:prank/src/view/profile/profile_view.dart';
 import 'package:prank/src/widgets/more/ads_container.dart';
@@ -24,18 +24,12 @@ class HommePage extends StatelessWidget {
         children: [
           SizedBox(
             child: SingleChildScrollView(
-              padding: EdgeInsets.only(bottom: 165),
+              padding: EdgeInsets.only(bottom: 250, top: 80),
               child: Column(
                 children: [
-                  SafeArea(
-                    bottom: false,
-                    child: AdsContainer(),
-                  ),
                   buildAppBar(context),
                   SizedBox(height: 25),
                   CarouselWithIndicatorDemo(),
-                  SizedBox(height: 20),
-                  AdsContainer(),
                   SizedBox(height: 20),
                   buildContainer(
                     "Popular Wallpapers",
@@ -60,51 +54,61 @@ class HommePage extends StatelessWidget {
               ),
             ),
           ),
+          BannerAdsView(
+            adsModel: adsService.banners.elementAt(0),
+          ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: Container(
-              height: 172,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(47),
-                    topLeft: Radius.circular(47)),
-              ),
-              alignment: Alignment.topCenter,
-              padding: const EdgeInsets.only(left: 31, top: 15),
-              child: Row(
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    height: 46,
-                    width: 44,
-                    decoration: BoxDecoration(
-                      color: Color(0xFF313036),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: SvgIcon(icon: "icon_person"),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                AdsContainer(),
+                SizedBox(height: 15),
+                Container(
+                  height: 172,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(47),
+                        topLeft: Radius.circular(47)),
                   ),
-                  SizedBox(
-                    width: 16,
-                  ),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  alignment: Alignment.topCenter,
+                  padding: const EdgeInsets.only(left: 31, top: 15),
+                  child: Row(
                     children: [
-                      Text(
-                        "Hi, welcome to the best app",
-                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      Container(
+                        padding: EdgeInsets.all(10),
+                        height: 46,
+                        width: 44,
+                        decoration: BoxDecoration(
+                          color: Color(0xFF313036),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: SvgIcon(icon: "icon_person"),
                       ),
-                      Text(
-                        "Have a good day",
-                        style:
-                            TextStyle(color: Color(0xFF3D3D3D), fontSize: 12),
+                      SizedBox(
+                        width: 16,
                       ),
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Hi, welcome to the best app",
+                            style: TextStyle(color: Colors.white, fontSize: 16),
+                          ),
+                          Text(
+                            "Have a good day",
+                            style: TextStyle(
+                                color: Color(0xFF3D3D3D), fontSize: 12),
+                          ),
+                        ],
+                      )
                     ],
-                  )
-                ],
-              ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],

@@ -3,7 +3,7 @@ import 'package:prank/src/services/video_service.dart';
 import 'package:prank/src/utils/device.dart';
 import 'package:prank/src/utils/functions.dart';
 import 'package:prank/src/utils/locator.dart';
-import 'package:prank/src/view/Call/call.dart';
+import 'package:prank/src/view/call_video/call.dart';
 
 import 'package:prank/src/view/camera/camera_view.dart';
 import 'package:prank/src/view/chat/chat.dart';

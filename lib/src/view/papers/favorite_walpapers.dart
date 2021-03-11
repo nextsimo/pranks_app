@@ -1,7 +1,9 @@
 import 'dart:math';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:prank/src/utils/functions.dart';
+import 'package:prank/src/utils/locator.dart';
 
 import 'package:prank/src/view/navigation/navigation_view.dart';
 import 'package:prank/src/view/papers/download_papers.dart';
@@ -12,6 +14,7 @@ import 'package:prank/src/widgets/buttons/favorite_button.dart';
 class FavoriteWalPapers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    List<String> favPapers = papersService.favorites;
     return Material(
       color: Color(0xFF212121),
       child: Stack(
@@ -21,13 +24,13 @@ class FavoriteWalPapers extends StatelessWidget {
             crossAxisCount: 2,
             mainAxisSpacing: 10,
             crossAxisSpacing: 10,
-            children: List.generate(20, (index) {
-              int randomId = Random().nextInt(100);
+            children: List.generate(favPapers.length, (index) {
+              String image = favPapers[index];
               return InkWell(
                 onTap: () => navigateTo(
                     context,
                     DownloadPapers(
-                      image: 'https://picsum.photos/id/$randomId/200/300',
+                      image: image,
                       index: index,
                     )),
                 child: Stack(
@@ -39,9 +42,8 @@ class FavoriteWalPapers extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15),
                             image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: NetworkImage(
-                                'https://picsum.photos/id/$randomId/200/300',
-                              ),
+                              image: CachedNetworkImageProvider(
+                                  getImagePath(image)),
                             )),
                       ),
                     ),

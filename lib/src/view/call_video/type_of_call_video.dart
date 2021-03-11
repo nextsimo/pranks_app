@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:prank/src/models/type_of_call_model.dart';
+import 'package:prank/src/services/wallpapers_service.dart';
 import 'package:prank/src/utils/functions.dart';
-import 'package:prank/src/view/Call/Incoming_call.dart';
-import 'package:prank/src/view/Call/call.dart';
+import 'package:prank/src/view/call_video/Incoming_call.dart';
+import 'package:prank/src/view/call_video/video_call.dart';
 
 import 'package:prank/src/view/animation/box_animation.dart';
 
@@ -12,8 +14,9 @@ import 'package:prank/src/widgets/buttons/button_status_call.dart';
 import 'package:prank/src/widgets/buttons/next_call.dart';
 import 'package:prank/src/widgets/more/ads_container.dart';
 import 'package:prank/src/widgets/more/container_black.dart';
+import 'package:provider/provider.dart';
 
-class TypeOfCall extends StatelessWidget {
+class TypeOfCallVideo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -35,14 +38,13 @@ class TypeOfCall extends StatelessWidget {
                         function: () => navigateTo(
                             context,
                             IncommingCall(
-                              title: "Incoming call ",
-                              page: Call(),
+                              title: "Incoming Video call ",
+                              page: VideoCall(),
                             )),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.only(right: 35, left: 150),
                   child: Row(
@@ -62,31 +64,52 @@ class TypeOfCall extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 24),
-                ButtonCall(
+                SizedBox(height: 23),
+                Selector<WallpapersService, List<TypeOfCallModel>>(
+                  builder: (_, types, __) {
+                    return ListView.separated(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemBuilder: (_, int index) {
+                        TypeOfCallModel typeOfCall = types[index];
+                        List<String> videoLabel = typeOfCall.label.split(' ')
+                          ..insert(1, 'Video');
+                        return ButtonCall(
+                          text1: typeOfCall.emojis,
+                          text2: videoLabel.join(' '),
+                          isLocked: typeOfCall.isLocked,
+                        );
+                      },
+                      separatorBuilder: (_, __) => SizedBox(height: 15),
+                      itemCount: types.length,
+                    );
+                  },
+                  selector: (_, m) => m.typesOfcalls,
+                ),
+/*                 ButtonCall(
                   text1: "😀😘😍",
-                  text2: "HAPPY CALL",
+                  text2: "HAPPY VIDEO CALL",
                 ),
                 SizedBox(height: 5),
                 ButtonStatusCall(
                   text1: "😤😠😡",
-                  text2: "ANGRY CALL",
+                  text2: "ANGRY VIDEO CALL",
                 ),
                 SizedBox(height: 5),
                 ButtonStatusCall(
                   text1: "😝😜🤪",
-                  text2: "FUNNY CALL",
+                  text2: "FUNNY VIDEO CALL",
                 ),
                 SizedBox(height: 5),
                 ButtonStatusCall(
                   text1: "💕❤️❤️",
-                  text2: "LOVE CALL",
+                  text2: "LOVE VIDEO CALL",
                 ),
                 SizedBox(height: 5),
                 ButtonStatusCall(
                   text1: "👩🏻‍🌾👩🏼‍🍳✌️",
-                  text2: "COOKING CALL",
-                ),
+                  text2: "COOKING VIDEO CALL",
+                ), */
               ],
             ),
           ),

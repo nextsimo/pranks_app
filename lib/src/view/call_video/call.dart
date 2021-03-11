@@ -10,6 +10,8 @@ import 'package:prank/src/widgets/more/text.dart';
 import 'package:share/share.dart';
 
 class Call extends StatelessWidget {
+  final String audio;
+  Call({this.audio});
   @override
   Widget build(BuildContext context) {
     return Material(

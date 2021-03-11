@@ -3,8 +3,9 @@ import 'package:prank/src/utils/device.dart';
 
 class Next extends StatelessWidget {
   final Function function;
+  final Color color;
 
-  const Next({Key key, this.function}) : super(key: key);
+  const Next({Key key, this.function, this.color}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -15,7 +16,7 @@ class Next extends StatelessWidget {
           width: Device.width * 0.16,
           height: 50,
           decoration: BoxDecoration(
-            color: Color(0xffFFCE00),
+            color: color,
             borderRadius: BorderRadius.circular(15),
           ),
           child: Padding(

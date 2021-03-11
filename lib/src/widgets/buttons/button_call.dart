@@ -1,31 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:prank/src/utils/device.dart';
+import 'package:prank/src/widgets/more/svg_icon.dart';
 
-class ButtonCall extends StatefulWidget {
+class ButtonCall extends StatelessWidget {
   final String text1;
   final String text2;
+  final bool isLocked;
+  final bool selected;
+  final int index;
+  final void Function() ontap;
 
-  ButtonCall({
-    Key key,
-    this.text1,
-    this.text2,
-  }) : super(key: key);
-
-  @override
-  _ButtonCallState createState() => _ButtonCallState();
-}
-
-class _ButtonCallState extends State<ButtonCall> {
-  bool selected = false;
+  const ButtonCall(
+      {Key key,
+      this.text1,
+      this.text2,
+      this.isLocked,
+      this.selected,
+      this.index,
+      this.ontap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        setState(() {
-          selected = !selected;
-        });
-      },
+      onTap: ontap,
       child: buildCardLocked(),
     );
   }
@@ -43,56 +41,67 @@ class _ButtonCallState extends State<ButtonCall> {
             width: 2,
           )),
       child: Padding(
-        padding: const EdgeInsets.only(left: 28),
+        padding: const EdgeInsets.symmetric(horizontal: 28),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            AnimatedContainer(
-              duration: Duration(milliseconds: 300),
-              padding: const EdgeInsets.all(2),
-              margin: EdgeInsets.symmetric(vertical: 10),
-              height: 37,
-              width: 37,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: selected ? Color(0xffFFCE00) : Colors.white,
-                  width: 1,
-                ),
-                shape: BoxShape.circle,
-              ),
-              child: Center(
-                child: AnimatedContainer(
-                    duration: Duration(milliseconds: 300),
-                    decoration: BoxDecoration(
-                      color: selected ? Color(0xffFFCE00) : Colors.transparent,
-                      shape: BoxShape.circle,
-                    )),
-              ),
-            ),
-            SizedBox(
-              width: 6,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
+            Row(
               children: [
-                Text(
-                  widget.text1,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: selected ? Color(0xffFFCE00) : Colors.white,
-                    fontWeight: FontWeight.w500,
+                AnimatedContainer(
+                  duration: Duration(milliseconds: 300),
+                  padding: const EdgeInsets.all(2),
+                  margin: EdgeInsets.symmetric(vertical: 10),
+                  height: 37,
+                  width: 37,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: selected ? Color(0xffFFCE00) : Colors.white,
+                      width: 1,
+                    ),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Center(
+                    child: AnimatedContainer(
+                        duration: Duration(milliseconds: 300),
+                        decoration: BoxDecoration(
+                          color:
+                              selected ? Color(0xffFFCE00) : Colors.transparent,
+                          shape: BoxShape.circle,
+                        )),
                   ),
                 ),
-                Text(
-                  widget.text2,
-                  style: TextStyle(
-                    color: selected ? Color(0xffFFCE00) : Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                SizedBox(
+                  width: 6,
                 ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      text1,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: selected ? Color(0xffFFCE00) : Colors.white,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Text(
+                      text2,
+                      style: TextStyle(
+                        color: selected ? Color(0xffFFCE00) : Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                )
               ],
-            )
+            ),
+            if (isLocked)
+              SvgIcon(
+                icon: "locked",
+                color: Color(0xffFFCE00),
+              ),
           ],
         ),
       ),

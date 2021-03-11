@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prank/src/view/Call/type_of_call_video.dart';
+import 'package:prank/src/view/call_video/type_of_call_video.dart';
 import 'package:prank/src/view/Locked/locked_view.dart';
 
 class LockedVideoView extends StatelessWidget {

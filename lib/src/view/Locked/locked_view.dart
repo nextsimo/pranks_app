@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prank/src/utils/functions.dart';
 import 'package:prank/src/view/navigation/navigation_view.dart';
+import 'package:prank/src/view/paypal/paypal_view.dart';
 import 'package:prank/src/widgets/app_bar/back_app_bar.dart';
 import 'package:prank/src/widgets/buttons/button_locked.dart';
 import 'package:prank/src/widgets/buttons/next_call.dart';
@@ -104,15 +105,18 @@ class LockedView extends StatelessWidget {
             height: 33,
           ),
           ButtonLocked(
-            text1: "RATE THE APP",
-            text2: "GIVE US FIVE STARS ",
-          ),
+              text1: "RATE THE APP",
+              text2: "GIVE US FIVE STARS ",
+              ontap: () => rateMyApp(context)),
           SizedBox(
             height: 30,
           ),
           ButtonLocked(
             text1: "ADS VIDEO",
             text2: "WATCH VIDEO ADS",
+            ontap: () async {
+              return;
+            },
           ),
           SizedBox(
             height: 30,
@@ -120,6 +124,15 @@ class LockedView extends StatelessWidget {
           ButtonLocked(
             text1: "DONATE",
             text2: "GIVE US 1\$ PAYPAL",
+            ontap: () async {
+              await navigateTo(
+                context,
+                PaypalPayment(
+                  onFinish: () {},
+                ),
+              );
+              return;
+            },
           ),
         ],
       ),

@@ -6,8 +6,9 @@ import 'package:prank/src/utils/device.dart';
 class ButtonLocked extends StatefulWidget {
   final String text1;
   final String text2;
+  final Future<bool> Function() ontap;
 
-  ButtonLocked({Key key, this.text1, this.text2}) : super(key: key);
+  ButtonLocked({Key key, this.text1, this.text2, this.ontap}) : super(key: key);
 
   @override
   _ButtonLockedState createState() => _ButtonLockedState();
@@ -19,10 +20,14 @@ class _ButtonLockedState extends State<ButtonLocked> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        setState(() {
-          selected = !selected;
-        });
+      onTap: () async {
+        if (widget.ontap != null) {
+          bool res = await widget.ontap();
+          if (res)
+            setState(() {
+              selected = !selected;
+            });
+        }
       },
       child: Stack(
         children: [
