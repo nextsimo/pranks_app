@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AdmobService {
@@ -20,7 +22,16 @@ class AdmobService {
     _interstitial = InterstitialAd(
       adUnitId: interstitialId,
       request: AdRequest(),
-      listener: AdListener(),
+      listener: AdListener(onAdFailedToLoad: (_, error) {
+        log(error.message);
+        _interstitial.dispose();
+        _interstitial = null;
+      }, onAdClosed: (_) {
+        _interstitial.dispose();
+        _interstitial = null;
+      }, onAdLoaded: (Ad ad) async {
+        await _interstitial.show();
+      }),
     );
   }
 
@@ -42,9 +53,6 @@ class AdmobService {
   Future<void> showIterstitial(String interstitialId) async {
     if (_interstitial == null) _initInterstitial(interstitialId);
     await _interstitial.load();
-    await _interstitial.show();
-    _interstitial.dispose();
-    _interstitial = null;
   }
 
   Future<void> showRewarded(String rewardedId) async {

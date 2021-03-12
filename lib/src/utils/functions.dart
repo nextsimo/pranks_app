@@ -86,14 +86,33 @@ Future<void> showGoogleIntertitial(AdsModel adsModel) async {
 }
 
 Future<void> showFacebookIntertitial(AdsModel adsModel) async {
+  log(adsModel.androidToken);
+  log(adsModel.iosToken);
   if (Platform.isAndroid) {
     await FacebookAudienceNetwork.loadInterstitialAd(
-        placementId: adsModel.androidToken);
-    await FacebookAudienceNetwork.showInterstitialAd();
+      listener: (result, __) async {
+        if (result == InterstitialAdResult.LOADED) {
+          FacebookAudienceNetwork.showInterstitialAd();
+        } else if (result == InterstitialAdResult.DISMISSED) {
+          FacebookAudienceNetwork.destroyInterstitialAd();
+        } else if (result == InterstitialAdResult.ERROR) {
+          FacebookAudienceNetwork.destroyInterstitialAd();
+          log(__.toString());
+        }
+      },
+      placementId: adsModel.androidToken,
+    );
   } else if (Platform.isIOS) {
     await FacebookAudienceNetwork.loadInterstitialAd(
-        placementId: adsModel.androidToken);
-    await FacebookAudienceNetwork.showInterstitialAd();
+      listener: (result, __) async {
+        if (result == InterstitialAdResult.LOADED) {
+          await FacebookAudienceNetwork.showInterstitialAd();
+        } else if (result == InterstitialAdResult.DISMISSED) {
+          FacebookAudienceNetwork.destroyInterstitialAd();
+        }
+      },
+      placementId: adsModel.iosToken,
+    );
   }
 }
 
@@ -103,6 +122,9 @@ Future<void> showUnityIntertitial(AdsModel adsModel) async {
 }
 
 Future<void> showApplovinIntertitial(AdsModel adsModel) async {
-  await AppLovin.requestInterstitial((listener) {});
-  await AppLovin.showInterstitial();
+  await AppLovin.requestInterstitial((listener) async {
+    if (listener == AppLovinAdListener.adReceived) {
+      await AppLovin.showInterstitial();
+    }
+  });
 }

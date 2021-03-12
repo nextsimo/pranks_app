@@ -13,7 +13,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await MobileAds.instance.initialize();
-  await FacebookAudienceNetwork.init();
+  await FacebookAudienceNetwork.init(
+      testingId: 'ee3f7012-38cf-48e4-ac12-bd17879c2e8e');
   AppLovin.init();
   await MobileAds.instance.updateRequestConfiguration(RequestConfiguration(
       testDeviceIds: ['A6C34EE153CB1B4FD1C61C489D082642']));
